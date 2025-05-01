@@ -1,0 +1,12 @@
+{
+    "C_Cpp.intelliSenseEngine": "default",
+    "idf.espIdfPath": "/home/harrington/esp/v5.4.1/esp-idf",
+    "idf.pythonInstallPath": "/home/harrington/.espressif/python_env/idf5.4_py3.12_env/bin/python",
+    "idf.openOcdConfigs": [
+        "board/esp32-wrover-kit-3.3v.cfg"
+    ],
+    "idf.port": "/dev/ttyUSB0",
+    "idf.toolsPath": "/home/harrington/.espressif",
+    "C_Cpp.errorSquiggles": "disabled",
+    "idf.flashType": "UART"
+}
