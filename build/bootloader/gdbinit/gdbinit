@@ -1,0 +1,2 @@
+source /home/harrington/scale_iot_design_04-30-2025/build/bootloader/gdbinit/symbols
+source /home/harrington/scale_iot_design_04-30-2025/build/bootloader/gdbinit/connect

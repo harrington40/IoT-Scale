@@ -6,6 +6,17 @@
 #include "moving_average.h"
 #include "kalman_filter.h"
 
+
+// Add these helper macros at the top of the file (after includes)
+#ifndef min
+#define min(a,b) ((a) < (b) ? (a) : (b))
+#endif
+
+#ifndef max
+#define max(a,b) ((a) > (b) ? (a) : (b))
+#endif
+
+
 // Static variables
 static int s_ma_window = 0;
 static moving_avg_t s_ma;
@@ -214,5 +225,76 @@ void hx711_rtos_task(void *pvParameters)
             }
         }
         vTaskDelay(pdMS_TO_TICKS(10)); // 100Hz sampling rate
+    }
+}
+
+
+// Median filter implementation with RTOS protection
+int32_t hx711_read_median_rtos(hx711_t *scale, uint8_t* current_sample_size) {
+    static uint8_t adaptive_window = MEDIAN_MIN_SAMPLES;
+    float filtered_value = 0.0f;
+    
+    if (xSemaphoreTake(scale->mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+        // Dynamic window sizing
+        if (s_boost_count > 0) {
+            adaptive_window = min(MEDIAN_MAX_SAMPLES, 
+                                adaptive_window + MEDIAN_STEP_INCREASE);
+        } else {
+            adaptive_window = max(MEDIAN_MIN_SAMPLES,
+                                adaptive_window - 1); // Gradual reduction
+        }
+        
+        if (current_sample_size) *current_sample_size = adaptive_window;
+        
+        // Take samples with adaptive window
+        int32_t samples[adaptive_window];
+        for (uint8_t i = 0; i < adaptive_window; i++) {
+            samples[i] = hx711_read_raw(scale);
+            vTaskDelay(pdMS_TO_TICKS(1));
+        }
+        
+        // Cascaded median filtering
+        for (uint8_t i = 2; i < adaptive_window; i++) {
+            samples[i] = median3(samples[i-2], samples[i-1], samples[i]);
+        }
+        filtered_value = (float)samples[adaptive_window-1];
+        
+        // Existing step-aware filters
+        if (s_ma_window > 0) {
+            if (fabsf(filtered_value - s_last_output) > STEP_THRESHOLD) {
+                moving_average_reset(&s_ma, filtered_value);
+            }
+            filtered_value = moving_average_update(&s_ma, filtered_value);
+        }
+        
+        if (s_use_kf) {
+            // ... (existing Kalman logic)
+        }
+        
+        s_last_output = filtered_value;
+        xSemaphoreGive(scale->mutex);
+        return (int32_t)filtered_value;
+    }
+    return 0;
+
+}
+// RTOS Task for continuous median filtering
+void hx711_rtos_median_task(void *pvParameters) {
+    hx711_t *scale = (hx711_t *)pvParameters;
+    uint8_t current_window;
+    const TickType_t xDelay = pdMS_TO_TICKS(10);
+    
+    for (;;) {
+        int32_t val = hx711_read_median_rtos(scale, &current_window);
+        
+        // Optional debug output
+        #ifdef HX711_DEBUG
+        printf("Window: %d, Value: %d\n", current_window, val);
+        #endif
+        
+        if (scale->data_queue) {
+            xQueueSend(scale->data_queue, &val, 0);
+        }
+        vTaskDelay(xDelay);
     }
 }

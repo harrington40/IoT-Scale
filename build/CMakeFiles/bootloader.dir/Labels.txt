@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/harrington/scale_iot_design_04-30-2025/build/CMakeFiles/bootloader
+/home/harrington/scale_iot_design_04-30-2025/build/CMakeFiles/bootloader.rule
+/home/harrington/scale_iot_design_04-30-2025/build/CMakeFiles/bootloader-complete.rule
+/home/harrington/scale_iot_design_04-30-2025/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/harrington/scale_iot_design_04-30-2025/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/harrington/scale_iot_design_04-30-2025/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/harrington/scale_iot_design_04-30-2025/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/harrington/scale_iot_design_04-30-2025/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/harrington/scale_iot_design_04-30-2025/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/harrington/scale_iot_design_04-30-2025/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
