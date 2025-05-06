@@ -1,0 +1,7 @@
+<map id="spiffs_init" name="spiffs_init">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,91,31"/>
+<area shape="rect" id="Node000002" href="$spiffs__manager_8c.html#ab1c7cd65f7d2ab1a577cd0179c779ee6" title=" " alt="" coords="139,5,239,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,15,125,15,125,21,91,21"/>
+<area shape="rect" id="Node000003" href="$spiffs__manager_8c.html#a656aec054719d785777ba151b15d2760" title=" " alt="" coords="287,5,400,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="239,15,273,15,273,21,239,21"/>
+</map>

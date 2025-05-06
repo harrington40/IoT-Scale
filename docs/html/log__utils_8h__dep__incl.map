@@ -1,0 +1,11 @@
+<map id="main/log_utils/log_utils.h" name="main/log_utils/log_utils.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="239,5,378,45"/>
+<area shape="rect" id="Node000002" href="$main_8c.html" title=" " alt="" coords="5,101,108,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="242,52,91,103,89,98,240,47"/>
+<area shape="rect" id="Node000003" href="$sntp__synch_8c.html" title=" " alt="" coords="132,93,296,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="279,57,237,95,233,91,276,53"/>
+<area shape="rect" id="Node000004" href="$weight__manager_8c.html" title=" " alt="" coords="321,93,489,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="342,53,385,91,382,95,339,57"/>
+<area shape="rect" id="Node000005" href="$wifi__comm_8c.html" title=" " alt="" coords="513,101,681,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="386,47,559,98,558,103,384,52"/>
+</map>

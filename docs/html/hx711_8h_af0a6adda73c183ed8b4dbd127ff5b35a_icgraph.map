@@ -1,0 +1,11 @@
+<map id="hx711_read_filtered" name="hx711_read_filtered">
+<area shape="rect" id="Node000001" title=" " alt="" coords="541,31,692,56"/>
+<area shape="rect" id="Node000002" href="$hx711_8c.html#ac6c8066eeca1a4549359b2da8deda8f9" title=" " alt="" coords="311,5,493,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="527,35,493,31,494,26,528,30"/>
+<area shape="rect" id="Node000003" href="$hx711_8c.html#a985ea3f202ebc30a95f6bc340b15ef1e" title=" " alt="" coords="337,55,467,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="528,56,467,63,467,57,528,51"/>
+<area shape="rect" id="Node000004" href="$hx711_8c.html#aa3f2bd6b7c47bcd3ccbafcad4e942dd3" title=" " alt="" coords="140,55,263,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="323,70,263,70,263,65,323,65"/>
+<area shape="rect" id="Node000005" href="$main_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,55,92,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="126,70,92,70,92,65,126,65"/>
+</map>

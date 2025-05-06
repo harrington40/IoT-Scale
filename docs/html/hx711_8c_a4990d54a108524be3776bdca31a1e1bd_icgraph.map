@@ -1,0 +1,10 @@
+<map id="get_moving_average_value" name="get_moving_average_value">
+<area shape="rect" id="Node000001" title=" " alt="" coords="449,5,608,45"/>
+<area shape="rect" id="Node000002" href="$hx711_8c.html#af597cc145be81ec0898873fc0a2e8261" title=" " alt="" coords="311,13,401,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="436,28,401,28,401,23,436,23"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,13,92,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="297,28,92,28,92,23,297,23"/>
+<area shape="rect" id="Node000004" href="$hx711_8c.html#aa3f2bd6b7c47bcd3ccbafcad4e942dd3" title=" " alt="" coords="140,38,263,63"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="298,38,264,43,263,38,297,32"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="126,41,92,35,93,30,127,36"/>
+</map>

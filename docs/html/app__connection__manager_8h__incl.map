@@ -1,0 +1,9 @@
+<map id="main/app_connection_manager/app_connection_manager.h" name="main/app_connection_manager/app_connection_manager.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="51,5,245,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,88,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,62,72,101,69,97,115,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="113,108,183,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,60,151,94,145,94,145,60"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="208,108,339,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="188,58,247,98,244,102,185,62"/>
+</map>

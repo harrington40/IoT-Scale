@@ -1,0 +1,7 @@
+<map id="custom_gatt_init" name="custom_gatt_init">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,136,56"/>
+<area shape="rect" id="Node000002" href="$bluetooth_8c.html#a3751d2a71d6a2fab013b5c402ff546bf" title=" " alt="" coords="184,5,317,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,32,170,27,171,32,136,37"/>
+<area shape="rect" id="Node000003" href="$bluetooth__comm__gatt_8c.html#a4bf56e512c1a541a007522b29a19e144" title=" " alt="" coords="195,55,307,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="136,49,181,55,181,61,136,55"/>
+</map>

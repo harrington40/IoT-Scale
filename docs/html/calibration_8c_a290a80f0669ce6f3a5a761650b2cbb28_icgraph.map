@@ -1,0 +1,14 @@
+<map id="calibration_convert" name="calibration_convert">
+<area shape="rect" id="Node000001" title="Convert a raw ADC value into weight using the computed model." alt="" coords="933,5,1080,31"/>
+<area shape="rect" id="Node000002" href="$weight__manager_8c.html#a5427a48300064edb414c8c35b830fadb" title=" " alt="" coords="719,5,885,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="919,21,885,21,885,15,919,15"/>
+<area shape="rect" id="Node000003" href="$weight__manager_8c.html#af363d5c833e2bc81e4ed46769ed2eb08" title="Initialize the weight manager." alt="" coords="512,5,671,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="705,21,671,21,671,15,705,15"/>
+<area shape="rect" id="Node000004" href="$main_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,5,92,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="498,21,92,21,92,15,498,15"/>
+<area shape="rect" id="Node000005" href="$wifi__comm_8c.html#af00a27b9e490096d5767f48feed1d3ae" title=" " alt="" coords="319,31,464,56"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="498,32,465,37,464,31,498,27"/>
+<area shape="rect" id="Node000006" href="$wifi__comm_8c.html#ac491034a906f7c44bb351a13b4cdd08d" title="Initialise Wi‑Fi in STA mode, scan for APs, connect to the given SSID/password, and (optionally) star..." alt="" coords="140,31,271,56"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="305,46,271,46,271,41,305,41"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="126,33,92,28,93,22,127,28"/>
+</map>

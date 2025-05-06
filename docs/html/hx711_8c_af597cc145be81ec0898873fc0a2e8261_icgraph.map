@@ -1,0 +1,8 @@
+<map id="hx711_init" name="hx711_init">
+<area shape="rect" id="Node000001" title=" " alt="" coords="311,5,401,31"/>
+<area shape="rect" id="Node000002" href="$main_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,5,92,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="297,21,92,21,92,15,297,15"/>
+<area shape="rect" id="Node000003" href="$hx711_8c.html#aa3f2bd6b7c47bcd3ccbafcad4e942dd3" title=" " alt="" coords="140,31,263,56"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="298,30,264,36,263,31,297,25"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="126,34,92,28,93,22,127,28"/>
+</map>

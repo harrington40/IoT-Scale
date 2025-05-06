@@ -1,0 +1,7 @@
+<map id="wifi_scan_task" name="wifi_scan_task">
+<area shape="rect" id="Node000001" title=" " alt="" coords="319,5,436,31"/>
+<area shape="rect" id="Node000002" href="$wifi__comm_8c.html#ac491034a906f7c44bb351a13b4cdd08d" title="Initialise Wi‑Fi in STA mode, scan for APs, connect to the given SSID/password, and (optionally) star..." alt="" coords="140,5,271,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="305,21,271,21,271,15,305,15"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,5,92,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="126,21,92,21,92,15,126,15"/>
+</map>

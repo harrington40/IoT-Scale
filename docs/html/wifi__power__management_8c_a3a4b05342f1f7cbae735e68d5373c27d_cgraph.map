@@ -1,0 +1,7 @@
+<map id="light_sleep" name="light_sleep">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,99,56"/>
+<area shape="rect" id="Node000002" href="$wifi__power__management_8c.html#aeec4f33ebf7973472a0f25830eb03f54" title=" " alt="" coords="147,5,311,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,34,133,29,134,34,99,39"/>
+<area shape="rect" id="Node000003" href="$wifi__power__management_8c.html#a2cd0828c9339f5d25782f5e3d736b49c" title=" " alt="" coords="157,55,301,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="99,47,143,53,143,58,99,52"/>
+</map>
