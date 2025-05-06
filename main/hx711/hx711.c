@@ -96,6 +96,8 @@ void hx711_init(hx711_t *scale,
                    (float)raw0));
 }
 
+static QueueHandle_t hx711_q = NULL;
+
 void hx711_init_rtos(hx711_t *scale,
     gpio_num_t dout,
     gpio_num_t sck,
@@ -106,11 +108,37 @@ void hx711_init_rtos(hx711_t *scale,
     float R_init,
     UBaseType_t task_priority)
 {
+// 1) Create one queue and assign it both to the static handle and to the scale
+hx711_q = xQueueCreate(8, sizeof(float));    // 8-element float queue
+configASSERT(hx711_q);
+
+// 2) Initialize the core driver (filters, pins, etc.)
 hx711_init(scale, dout, sck, gain, ma_window, use_kf, Q_init, R_init);
+
+// 3) Store the same queue in the scale struct
+scale->data_queue = hx711_q;
+
+// 4) Create mutex for raw access
 scale->mutex = xSemaphoreCreateMutex();
-scale->data_queue = xQueueCreate(10, sizeof(float)); // Create queue internally
-xTaskCreate(hx711_rtos_task, "HX711_Task", 4096, scale, task_priority, NULL);
+configASSERT(scale->mutex);
+
+// 5) Launch the RTOS sampling task
+xTaskCreate(hx711_rtos_task,      // task function
+"HX711_Task",         // name
+4096,                 // stack size
+scale,                // parameter
+task_priority,        // priority
+NULL);                // no handle needed
 }
+
+QueueHandle_t hx711_get_queue(void)
+{
+// Returns the queue into which the RTOS task sends filtered floats
+return hx711_q;
+}
+
+
+
 
 void hx711_deinit(hx711_t *scale)
 {

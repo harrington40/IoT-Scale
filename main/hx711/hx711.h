@@ -59,7 +59,7 @@ void hx711_init_rtos_with_queue(hx711_t *scale,
 int32_t hx711_read_median_rtos(hx711_t *scale, uint8_t* current_sample_size);
 void hx711_rtos_median_task(void *pvParameters);  // New RTOS task for median filtering
 
-
+QueueHandle_t hx711_get_queue(void);
 // Add these near other #defines
 #define MEDIAN_MIN_SAMPLES  3    // Minimum median window size
 #define MEDIAN_MAX_SAMPLES  11   // Maximum during rapid changes

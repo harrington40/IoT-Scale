@@ -1,223 +1,120 @@
+// File: main/main.c
+// ---------------------------------------------------------------------------
+// Smart-Scale startup:
+//   1) Single-point tare + calibration  
+//   2) HX711 RTOS driver → queue  
+//   3) Weight manager → timestamped logging (immediate)  
+//   4) Wi-Fi → SNTP → echo server → power-save  
+// ---------------------------------------------------------------------------
+
 #include <stdio.h>
-#include <inttypes.h>
-#include <math.h>
-#include "driver/gpio.h"
+#include <inttypes.h>            // for PRId32
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "freertos/queue.h"
+#include "esp_log.h"
+
+// Utility for nice tabular logs
+#include "log_utils.h"           // defines LOG_ROW(comp, fmt, ...)
+
+// Wi-Fi
+#include "wifi_comm.h"
+
+// HX711 driver
 #include "hx711.h"
+#include "driver/gpio.h"
+
+// Weight manager
+#include "weight_manager.h"
+
+// Calibration
 #include "calibration.h"
 
-// Hardware Configuration
-#define DOUT_PIN               GPIO_NUM_4
-#define SCK_PIN                GPIO_NUM_22
-#define GAIN                   HX711_GAIN_128
+/* ---------- App-wide definitions ---------------------------------------- */
+#define WIFI_SSID           "Tori_2.44Ghz"
+#define WIFI_PASS           "Logarithmses900"
 
-// Filter Configuration
-#define MA_WINDOW              8       // Moving average window size
-#define USE_KF                 true    // Enable Kalman filter
-#define KF_Q_INIT              0.5f    // Kalman process noise
-#define KF_R_INIT              1.0f    // Kalman measurement noise
+// HX711 pins/settings
+#define HX711_DOUT_PIN      GPIO_NUM_4
+#define HX711_SCK_PIN       GPIO_NUM_22
+#define HX711_GAIN          HX711_GAIN_128
 
-// Calibration Configuration
-#define TARE_SAMPLES           16
-#define CALIB_DELAY_MS         5000
-#define SINGLE_KNOWN_WEIGHT_G  200.0f
+// Filters
+#define MA_WINDOW           8
+#define USE_KF              true
+#define KF_Q_INIT           0.5f
+#define KF_R_INIT           1.0f
 
-// Auto-zero Configuration
-#define AUTO_ZERO_THRESHOLD    5.0f
-#define AUTO_ZERO_COUNT        50
+// Calibration samples & weight
+#define CAL_SAMPLES         10
+#define CAL_KNOWN_WEIGHT_G  200.0f
 
-// RTOS Configuration
-#define HX711_TASK_PRIORITY    5       // Higher priority than processing tasks
-#define HX711_TASK_STACK_SIZE  4096
-#define HX711_QUEUE_SIZE       10      // Weight data queue size
-#define HX711_SAMPLE_RATE_MS   10      // 100 Hz sampling (10 ms)
+static const char *TAG = "app_main";
 
-// Global variables
-static QueueHandle_t hx711_queue = NULL;
-static calibration_t cal;
-static int32_t zero = 0;
+// Global HX711 and calibration objects (external linkage)
+hx711_t       g_scale;
+calibration_t g_calib;    // filled during app_main calibration step
 
-// Configure HX711 GPIOs
-static void init_hx711_pins(void) {
-    gpio_config_t io_conf = { 0 };
+void app_main(void)
+{
+    LOG_ROW(TAG, "=== Smart-Scale FW starting ===");
 
-    // SCK pin = output
-    io_conf.pin_bit_mask = (1ULL << SCK_PIN);
-    io_conf.mode         = GPIO_MODE_OUTPUT;
-    io_conf.pull_up_en   = GPIO_PULLUP_DISABLE;
-    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE;
-    io_conf.intr_type    = GPIO_INTR_DISABLE;
-    gpio_config(&io_conf);
+    // 1) Basic tare + single-point calibration
+    {
+        int32_t raw_buf[CAL_SAMPLES];
+        int32_t zero_raw      = 0;
+        int32_t raw_at_weight = 0;
 
-    // DOUT pin = input with pull-up
-    io_conf.pin_bit_mask = (1ULL << DOUT_PIN);
-    io_conf.mode         = GPIO_MODE_INPUT;
-    io_conf.pull_up_en   = GPIO_PULLUP_ENABLE;   // HX711 needs a pull-up
-    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE;
-    io_conf.intr_type    = GPIO_INTR_DISABLE;
-    gpio_config(&io_conf);
-}
+        // Temporary init (no RTOS task) to get raw readings
+        hx711_init(&g_scale,
+                   HX711_DOUT_PIN,
+                   HX711_SCK_PIN,
+                   HX711_GAIN,
+                   MA_WINDOW,
+                   USE_KF,
+                   KF_Q_INIT,
+                   KF_R_INIT);
 
-// RTOS Task to process weight data
-static void weight_processing_task(void *pvParameters) {
-    float counts_f;
-    float grams;
-    int     az_count = 0;
-    int64_t az_sum   = 0;
-
-    while (1) {
-        if (xQueueReceive(hx711_queue, &counts_f, portMAX_DELAY) == pdPASS) {
-            grams = calibration_convert(&cal, (int32_t)counts_f);
-
-            // Auto-zero logic
-            if (fabsf(grams) < AUTO_ZERO_THRESHOLD) {
-                az_sum  += (int32_t)counts_f;
-                az_count++;
-                if (az_count >= AUTO_ZERO_COUNT) {
-                    zero            = (int32_t)(az_sum / az_count);
-                    cal.intercept   = -cal.slope * (float)zero;
-                    printf("Auto-zero → raw=%" PRId32 "\n", zero);
-                    az_sum  = 0;
-                    az_count= 0;
-                }
-            } else {
-                az_sum   = 0;
-                az_count = 0;
-            }
-
-            printf("Weight: %.2f g  (counts: %.1f)\n", grams, counts_f);
+        for (int i = 0; i < CAL_SAMPLES; i++) {
+            raw_buf[i] = hx711_read_raw(&g_scale);
+            vTaskDelay(pdMS_TO_TICKS(100));
         }
-    }
-}
 
-void app_main(void) {
-    // 1. GPIO setup
-    init_hx711_pins();
+        calibration_tare(&zero_raw, raw_buf, CAL_SAMPLES);
+        LOG_ROW(TAG, "Tare complete, zero_raw = %" PRId32, zero_raw);
 
-    // 2. Initialize HX711 driver with RTOS task
-    hx711_t scale;
-    hx711_init_rtos(&scale,
-        DOUT_PIN,
-        SCK_PIN,
-        GAIN,
-        MA_WINDOW,
-        USE_KF,
-        KF_Q_INIT,
-        KF_R_INIT,
-        HX711_TASK_PRIORITY);
-    // 3. Grab the data queue from the driver
-    hx711_queue = scale.data_queue;
-    if (hx711_queue == NULL) {
-        printf("ERROR: Failed to get HX711 data queue!\n");
-        return;
+        LOG_ROW(TAG, "Place %.0f g known weight on scale…", CAL_KNOWN_WEIGHT_G);
+        vTaskDelay(pdMS_TO_TICKS(5000));  // give user time
+
+        raw_at_weight = hx711_read_raw(&g_scale);
+        LOG_ROW(TAG, "Raw at weight = %" PRId32, raw_at_weight);
+
+        calibration_compute(&g_calib,
+                            zero_raw,
+                            raw_at_weight,
+                            CAL_KNOWN_WEIGHT_G);
+        LOG_ROW(TAG, "Calibration: slope=%.6f intercept=%.2f",
+                g_calib.slope, g_calib.intercept);
     }
 
-    // 4. Perform tare (zero) calibration
-    int32_t raw_samples[TARE_SAMPLES];
-    for (int i = 0; i < TARE_SAMPLES; i++) {
-        raw_samples[i] = hx711_read_raw_rtos(&scale);
-        vTaskDelay(pdMS_TO_TICKS(20));
-    }
-    calibration_tare(&zero, raw_samples, TARE_SAMPLES);
-    printf("Tare complete. Zero = %" PRId32 "\n", zero);
+    // 2) Start HX711 RTOS driver (creates hx711 queue internally)
+    hx711_init_rtos(&g_scale,
+                    HX711_DOUT_PIN,
+                    HX711_SCK_PIN,
+                    HX711_GAIN,
+                    MA_WINDOW,
+                    USE_KF,
+                    KF_Q_INIT,
+                    KF_R_INIT,
+                    5);  // task priority
 
-    // 5. Single-point calibration
-    printf("Place %.2f g weight on scale...\n", SINGLE_KNOWN_WEIGHT_G);
-    vTaskDelay(pdMS_TO_TICKS(CALIB_DELAY_MS));
-    int32_t raw_known = hx711_read_raw_rtos(&scale);
-    calibration_compute(&cal, zero, raw_known, SINGLE_KNOWN_WEIGHT_G);
-    printf("Calib: slope=%.5f intercept=%.3f\n", cal.slope, cal.intercept);
+    // 3) Start the weight manager immediately so you see live readings
+    weight_manager_init(hx711_get_queue(), &g_calib);
 
-    // 6. Start processing task
-    if (xTaskCreate(weight_processing_task,
-                    "Weight_Processor",
-                    HX711_TASK_STACK_SIZE,
-                    NULL,
-                    /* priority below the HX711 task */ 3,
-                    NULL) != pdPASS) {
-        printf("ERROR: Failed to create weight processing task!\n");
-    }
+    // 4) Finally, bring up Wi-Fi, SNTP, echo server, power-save, etc.
+    wifi_comm_start(WIFI_SSID, WIFI_PASS);
 
-    // 7. Idle loop
-    while (1) {
+    // Idle forever
+    for (;;) {
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
