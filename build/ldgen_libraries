@@ -52,6 +52,7 @@
 /home/harrington/scale_iot_design_04-30-2025/build/esp-idf/wpa_supplicant/libwpa_supplicant.a
 /home/harrington/scale_iot_design_04-30-2025/build/esp-idf/esp_coex/libesp_coex.a
 /home/harrington/scale_iot_design_04-30-2025/build/esp-idf/esp_wifi/libesp_wifi.a
+/home/harrington/scale_iot_design_04-30-2025/build/esp-idf/bt/libbt.a
 /home/harrington/scale_iot_design_04-30-2025/build/esp-idf/unity/libunity.a
 /home/harrington/scale_iot_design_04-30-2025/build/esp-idf/cmock/libcmock.a
 /home/harrington/scale_iot_design_04-30-2025/build/esp-idf/console/libconsole.a

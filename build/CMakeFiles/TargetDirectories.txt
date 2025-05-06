@@ -16,6 +16,7 @@
 /home/harrington/scale_iot_design_04-30-2025/build/CMakeFiles/size-components.dir
 /home/harrington/scale_iot_design_04-30-2025/build/CMakeFiles/uf2.dir
 /home/harrington/scale_iot_design_04-30-2025/build/CMakeFiles/uf2-app.dir
+/home/harrington/scale_iot_design_04-30-2025/build/CMakeFiles/docs.dir
 /home/harrington/scale_iot_design_04-30-2025/build/CMakeFiles/edit_cache.dir
 /home/harrington/scale_iot_design_04-30-2025/build/CMakeFiles/rebuild_cache.dir
 /home/harrington/scale_iot_design_04-30-2025/build/CMakeFiles/list_install_components.dir
@@ -555,6 +556,7 @@
 /home/harrington/scale_iot_design_04-30-2025/build/esp-idf/esp_wifi/CMakeFiles/install.dir
 /home/harrington/scale_iot_design_04-30-2025/build/esp-idf/esp_wifi/CMakeFiles/install/local.dir
 /home/harrington/scale_iot_design_04-30-2025/build/esp-idf/esp_wifi/CMakeFiles/install/strip.dir
+/home/harrington/scale_iot_design_04-30-2025/build/esp-idf/bt/CMakeFiles/__idf_bt.dir
 /home/harrington/scale_iot_design_04-30-2025/build/esp-idf/bt/CMakeFiles/edit_cache.dir
 /home/harrington/scale_iot_design_04-30-2025/build/esp-idf/bt/CMakeFiles/rebuild_cache.dir
 /home/harrington/scale_iot_design_04-30-2025/build/esp-idf/bt/CMakeFiles/list_install_components.dir
