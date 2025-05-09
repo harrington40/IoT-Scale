@@ -16,7 +16,7 @@ CREATE_SUBDIRS         = NO            # flat output directories
 #---------------------------------------------------------------------------
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = main/calibration
+INPUT                  = main/
 # relative to where you run Doxygen
 RECURSIVE              = YES           # scan all subdirectories under INPUT
 FILE_PATTERNS          = *.c *.h       # only C sources and headers

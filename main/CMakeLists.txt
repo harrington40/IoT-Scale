@@ -1,6 +1,15 @@
 idf_component_register(
+    EMBED_FILES
+
+        "certs/fullchain.crt"
+        "certs/server.key"
+   
+   
+
+        
     SRCS  
         "main.c"
+        "certs/server_cert.c"
         "hx711/hx711.c"
         "calibration/calibration.c"
         "kalman_filter/kalman_filter.c"
@@ -13,6 +22,7 @@ idf_component_register(
         "spiffs_manager/spiffs_manager.c"
         "sntp_synch/sntp_synch.c"
         "bluetooth_comm_gatt/bluetooth_comm_gatt.c"
+        
     INCLUDE_DIRS
         
         "."        # for main.h, etc.
@@ -29,6 +39,10 @@ idf_component_register(
         "sntp_synch"
         "bluetooth_comm_gatt"
         "log_utils"
+        "certs"
+   
+    
+        
         
         
 
@@ -42,7 +56,11 @@ idf_component_register(
         json
         nvs_flash
         esp_coex
-        
-        
+        esp-tls
+        mbedtls
+        esp_http_server
+        esp_https_server
+
             
 )
+
