@@ -1,11 +1,9 @@
 idf_component_register(
-    EMBED_FILES
+    
 
-        "certs/fullchain.crt"
-        "certs/server.key"
-   
-   
-
+    EMBED_FILES 
+     "certs/fullchain.crt"
+     "certs/server.key"   
         
     SRCS  
         "main.c"

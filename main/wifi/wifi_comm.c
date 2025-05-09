@@ -264,12 +264,20 @@ static void stop_https_server(void)
 
 static void start_https_server_task(void *pvParameters)
 {
+
+        // initialize the pointers & lengths from the embedded symbols
+        server_cert_init();
     while (1) {
         xEventGroupWaitBits(https_server_events,
                             SERVER_START_BIT,
                             pdTRUE, pdFALSE,
                             portMAX_DELAY);
 
+
+                                // ———— DEBUG LOGGING FOR CERTIFICATE EMBEDDING ————
+        ESP_LOGI(TAG, "⚙️  Debug cert embedding:");
+        ESP_LOGI(TAG, "   · server_cert_chain_len = %zu", server_cert_chain_len);
+        ESP_LOGI(TAG, "   · server_private_key_len = %zu", server_private_key_len);
         // 1) Validate embedded PEM blobs
         if (server_cert_chain_len == 0 || server_private_key_len == 0) {
             ESP_LOGE(TAG, "Certificate or key is zero-length");
