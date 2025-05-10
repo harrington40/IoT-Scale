@@ -1,0 +1,7 @@
+<map id="ble_host_task" name="ble_host_task">
+<area shape="rect" id="Node000001" title=" " alt="" coords="449,5,561,31"/>
+<area shape="rect" id="Node000002" href="$bluetooth__comm__gatt_8c.html#ae1304212bbefa936b054ce9783f61a42" title=" " alt="" coords="271,5,401,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="436,21,402,21,402,15,436,15"/>
+<area shape="rect" id="Node000003" href="$app__connection__manager_8c.html#a56fc30551431c4c7c6dff275c841f7ab" title="Initialize connection manager." alt="" coords="5,5,223,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="257,21,223,21,223,15,257,15"/>
+</map>

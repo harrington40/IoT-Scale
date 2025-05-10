@@ -1,0 +1,5 @@
+<map id="auth_mode_to_string" name="auth_mode_to_string">
+<area shape="rect" id="Node000001" title="Convert auth mode to readable string." alt="" coords="243,13,401,38"/>
+<area shape="rect" id="Node000002" href="$app__connection__manager_8c.html#a1a4aa1716ed41d3ef23c788bcdbc63ce" title="Get scan results with automatic printing." alt="" coords="5,5,195,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,28,195,28,195,23,229,23"/>
+</map>

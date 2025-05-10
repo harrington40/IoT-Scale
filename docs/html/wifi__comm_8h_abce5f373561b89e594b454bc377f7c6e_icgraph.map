@@ -1,0 +1,5 @@
+<map id="wifi_send_data" name="wifi_send_data">
+<area shape="rect" id="Node000001" title="Send raw bytes to the connected TCP client (if any)." alt="" coords="243,13,361,38"/>
+<area shape="rect" id="Node000002" href="$app__connection__manager_8c.html#a3f25602c10b9e778503c81b3b8620080" title="Send data through active connections." alt="" coords="5,5,195,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,28,195,28,195,23,229,23"/>
+</map>

@@ -1,10 +1,11 @@
 // File: main/main.c
 // ---------------------------------------------------------------------------
-// Smart-Scale startup:
-//   1) Single-point tare + calibration  
-//   2) HX711 RTOS driver → queue  
-//   3) Weight manager → timestamped logging (immediate)  
-//   4) Wi-Fi → SNTP → echo server → power-save  
+// Smart-Scale startup (reordered):
+//   1) Single-point tare + calibration
+//   2) Wi-Fi → SNTP → echo server → power-save
+//   3) HX711 RTOS driver → queue
+//   4) Weight manager → timestamped logging (immediate)
+//   5) HTTPS server for remote weight access
 // ---------------------------------------------------------------------------
 
 #include <stdio.h>
@@ -17,7 +18,7 @@
 #include "log_utils.h"           // defines LOG_ROW(comp, fmt, ...)
 
 // Wi-Fi
-#include "wifi_comm.h"
+#include "wifi/wifi_comm.h"
 
 // HX711 driver
 #include "hx711.h"
@@ -25,7 +26,9 @@
 
 // Weight manager
 #include "weight_manager.h"
-
+#include "sntp_synch.h"         // for sntp_sync_start(), sntp_time_available()
+#include "esp_http_server.h"
+#include "esp_https_server.h"
 // Calibration
 #include "calibration.h"
 
@@ -43,7 +46,7 @@
 #define USE_KF              true
 #define KF_Q_INIT           0.5f
 #define KF_R_INIT           1.0f
-
+static void *https_server = NULL;
 // Calibration samples & weight
 #define CAL_SAMPLES         10
 #define CAL_KNOWN_WEIGHT_G  200.0f
@@ -53,6 +56,9 @@ static const char *TAG = "app_main";
 // Global HX711 and calibration objects (external linkage)
 hx711_t       g_scale;
 calibration_t g_calib;    // filled during app_main calibration step
+
+// Forward declaration for HTTPS server status check
+bool https_server_is_running(void);
 
 void app_main(void)
 {
@@ -82,7 +88,7 @@ void app_main(void)
         calibration_tare(&zero_raw, raw_buf, CAL_SAMPLES);
         LOG_ROW(TAG, "Tare complete, zero_raw = %" PRId32, zero_raw);
 
-        LOG_ROW(TAG, "Place %.0f g known weight on scale…", CAL_KNOWN_WEIGHT_G);
+        LOG_ROW(TAG, "Place %.0f g known weight on scale...", CAL_KNOWN_WEIGHT_G);
         vTaskDelay(pdMS_TO_TICKS(5000));  // give user time
 
         raw_at_weight = hx711_read_raw(&g_scale);
@@ -96,7 +102,10 @@ void app_main(void)
                 g_calib.slope, g_calib.intercept);
     }
 
-    // 2) Start HX711 RTOS driver (creates hx711 queue internally)
+    // 2) Bring up Wi-Fi, SNTP, echo server, power-save, etc.
+    wifi_comm_start(WIFI_SSID, WIFI_PASS);
+
+    // 3) Start HX711 RTOS driver (creates hx711 queue internally)
     hx711_init_rtos(&g_scale,
                     HX711_DOUT_PIN,
                     HX711_SCK_PIN,
@@ -107,14 +116,48 @@ void app_main(void)
                     KF_R_INIT,
                     5);  // task priority
 
-    // 3) Start the weight manager immediately so you see live readings
+    // 4) Start the weight manager immediately so you see live readings
     weight_manager_init(hx711_get_queue(), &g_calib);
 
-    // 4) Finally, bring up Wi-Fi, SNTP, echo server, power-save, etc.
-    wifi_comm_start(WIFI_SSID, WIFI_PASS);
+    // 5) Start HTTPS server after network is up and weight system is running
+    // Wait for Wi-Fi to be connected first
+    int retries = 0;
+    while (!wifi_is_connected() && retries++ < 20) {
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
+    
+    if (wifi_is_connected()) {
+        LOG_ROW(TAG, "Starting HTTPS server...");
+        init_https_server();
+    } else {
+        LOG_ROW(TAG, "Wi-Fi not connected, skipping HTTPS server start");
+    }
 
-    // Idle forever
+    // Main loop - monitor system health
     for (;;) {
+        static uint32_t counter = 0;
+        
+        // Periodic status report
+        if (++counter % 60 == 0) {  // Every 60 seconds
+            LOG_ROW(TAG, "System status - Wi-Fi: %s, HTTPS: %s",
+                   wifi_is_connected() ? "connected" : "disconnected",
+                   https_server_is_running() ? "running" : "stopped");
+            
+            // Attempt to restart HTTPS server if Wi-Fi is back but server is down
+            if (wifi_is_connected() && !https_server_is_running()) {
+                LOG_ROW(TAG, "Attempting HTTPS server restart...");
+                init_https_server();
+            }
+        }
+        
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
+}
+
+/**
+ * @brief Check if HTTPS server is running
+ * @return true if server is running, false otherwise
+ */
+bool https_server_is_running(void) {
+    return (https_server != NULL);
 }

@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['ble_5fadvertising_5fsleep_0',['ble_advertising_sleep',['../wifi__power__management_8c.html#aeec4f33ebf7973472a0f25830eb03f54',1,'ble_advertising_sleep(void):&#160;wifi_power_management.c'],['../wifi__power__management_8h.html#aeec4f33ebf7973472a0f25830eb03f54',1,'ble_advertising_sleep(void):&#160;wifi_power_management.c']]],
+  ['ble_5fapp_5fon_5fsync_1',['ble_app_on_sync',['../bluetooth_8c.html#a3751d2a71d6a2fab013b5c402ff546bf',1,'ble_app_on_sync(void):&#160;bluetooth.c'],['../bluetooth_8h.html#a3751d2a71d6a2fab013b5c402ff546bf',1,'ble_app_on_sync(void):&#160;bluetooth.c'],['../bluetooth__comm__gatt_8h.html#a3751d2a71d6a2fab013b5c402ff546bf',1,'ble_app_on_sync(void):&#160;bluetooth.c']]],
+  ['ble_5fconnection_5fsleep_2',['ble_connection_sleep',['../wifi__power__management_8c.html#a6e2159f14001b78daaace33794a57f2a',1,'ble_connection_sleep(void):&#160;wifi_power_management.c'],['../wifi__power__management_8h.html#a6e2159f14001b78daaace33794a57f2a',1,'ble_connection_sleep(void):&#160;wifi_power_management.c']]],
+  ['ble_5fgap_5fevent_3',['ble_gap_event',['../bluetooth__comm__gatt_8c.html#a1ebb17143f6b1dc4970727854d817d8a',1,'ble_gap_event(struct ble_gap_event *event, void *arg):&#160;bluetooth_comm_gatt.c'],['../bluetooth__comm__gatt_8h.html#a1ebb17143f6b1dc4970727854d817d8a',1,'ble_gap_event(struct ble_gap_event *event, void *arg):&#160;bluetooth_comm_gatt.c']]],
+  ['ble_5fhost_5ftask_4',['ble_host_task',['../bluetooth__comm__gatt_8c.html#a4bf56e512c1a541a007522b29a19e144',1,'ble_host_task(void *param):&#160;bluetooth_comm_gatt.c'],['../bluetooth__comm__gatt_8h.html#a4bf56e512c1a541a007522b29a19e144',1,'ble_host_task(void *param):&#160;bluetooth_comm_gatt.c']]],
+  ['ble_5fidle_5fmode_5',['ble_idle_mode',['../wifi__power__management_8c.html#a852bc2cd60097157815ef8f855729a7e',1,'ble_idle_mode(void):&#160;wifi_power_management.c'],['../wifi__power__management_8h.html#a852bc2cd60097157815ef8f855729a7e',1,'ble_idle_mode(void):&#160;wifi_power_management.c']]],
+  ['ble_5finit_6',['ble_init',['../bluetooth_8c.html#a558b81a2eb010aca50902a52a9dbc921',1,'ble_init(void):&#160;bluetooth.c'],['../bluetooth_8h.html#a558b81a2eb010aca50902a52a9dbc921',1,'ble_init(void):&#160;bluetooth.c']]],
+  ['ble_5fon_5freset_7',['ble_on_reset',['../bluetooth_8c.html#a675642d210f93adacfb836b1d23680f4',1,'ble_on_reset(int reason):&#160;bluetooth.c'],['../bluetooth_8h.html#a675642d210f93adacfb836b1d23680f4',1,'ble_on_reset(int reason):&#160;bluetooth.c']]],
+  ['ble_5fon_5fsync_8',['ble_on_sync',['../bluetooth_8h.html#af729443f26704be2caa688ed965a1a04',1,'bluetooth.h']]],
+  ['bluetooth_2ec_9',['bluetooth.c',['../bluetooth_8c.html',1,'']]],
+  ['bluetooth_2eh_10',['bluetooth.h',['../bluetooth_8h.html',1,'']]],
+  ['bluetooth_5fcomm_5fgatt_2ec_11',['bluetooth_comm_gatt.c',['../bluetooth__comm__gatt_8c.html',1,'']]],
+  ['bluetooth_5fcomm_5fgatt_2eh_12',['bluetooth_comm_gatt.h',['../bluetooth__comm__gatt_8h.html',1,'']]],
+  ['bluetooth_5fcomm_5fgatt_5fsend_5fdata_13',['bluetooth_comm_gatt_send_data',['../bluetooth__comm__gatt_8h.html#aa624c6f2559b9d3bae6834691dc427c5',1,'bluetooth_comm_gatt.h']]],
+  ['bluetooth_5fconnected_14',['bluetooth_connected',['../structconnection__status__t.html#a0ef55eb0bb4b5a9f569dfbcf92b75548',1,'connection_status_t']]],
+  ['bluetooth_5fsend_5fdata_15',['bluetooth_send_data',['../bluetooth_8c.html#a33021c554eba693d80fdd8069f807bbe',1,'bluetooth_send_data(const uint8_t *data, size_t len):&#160;bluetooth.c'],['../bluetooth_8h.html#a33021c554eba693d80fdd8069f807bbe',1,'bluetooth_send_data(const uint8_t *data, size_t len):&#160;bluetooth.c']]],
+  ['body_5fcomposition_2ec_16',['body_composition.c',['../body__composition_8c.html',1,'']]],
+  ['body_5fcomposition_2eh_17',['body_composition.h',['../body__composition_8h.html',1,'']]],
+  ['body_5fcomposition_5ft_18',['body_composition_t',['../structbody__composition__t.html',1,'']]],
+  ['body_5ffat_5fpercentage_19',['body_fat_percentage',['../structbody__composition__t.html#a503085e76cfab737b490d8666aec7dff',1,'body_composition_t']]],
+  ['body_5finput_5ft_20',['body_input_t',['../structbody__input__t.html',1,'']]],
+  ['boost_5fsamples_21',['BOOST_SAMPLES',['../hx711_8c.html#a97f2af21262eb60edb27b2416abec402',1,'hx711.c']]],
+  ['boosted_5fq_22',['BOOSTED_Q',['../hx711_8c.html#a557da3fa8d1f2780b62431683764e71e',1,'hx711.c']]],
+  ['buffer_23',['buffer',['../structmoving__avg__t.html#aa1979f77fe7d04b1ac8278ee9fc97403',1,'moving_avg_t']]]
+];

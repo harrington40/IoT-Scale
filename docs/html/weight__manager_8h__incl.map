@@ -1,0 +1,13 @@
+<map id="main/weight_manager/weight_manager.h" name="main/weight_manager/weight_manager.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="161,5,329,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,156,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,48,118,90,116,85,204,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="180,93,309,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="247,46,247,79,242,79,242,46"/>
+<area shape="rect" id="Node000004" href="$calibration_8h.html" title=" " alt="" coords="333,93,436,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="279,43,353,84,351,89,277,48"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="300,167,371,192"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="379,121,353,157,349,154,374,117"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="395,167,470,192"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="395,118,420,154,415,157,390,121"/>
+</map>

@@ -1,0 +1,27 @@
+<map id="moving_average_update" name="moving_average_update">
+<area shape="rect" id="Node000001" title=" " alt="" coords="807,153,989,179"/>
+<area shape="rect" id="Node000002" href="$hx711_8c.html#af597cc145be81ec0898873fc0a2e8261" title=" " alt="" coords="358,5,449,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="865,148,815,120,758,94,674,68,588,48,448,26,449,20,589,43,675,63,760,89,818,115,867,144"/>
+<area shape="rect" id="Node000005" href="$hx711_8c.html#af0a6adda73c183ed8b4dbd127ff5b35a" title=" " alt="" coords="576,104,727,129"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="820,153,715,132,716,127,821,148"/>
+<area shape="rect" id="Node000008" href="$hx711_8c.html#a1a9420f9643f715e8f5e45e342ffbf8a" title=" " alt="" coords="558,153,745,179"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="793,169,745,169,745,163,793,163"/>
+<area shape="rect" id="Node000010" href="$moving__average_8c.html#a1660b641ce379ad5bc797ce9da11d810" title=" " alt="" coords="560,203,743,243"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="830,184,738,206,737,201,829,179"/>
+<area shape="rect" id="Node000012" href="$moving__average_8c.html#a21653a3c2898a3d5cbddb4ed934cb2c3" title=" " alt="" coords="544,268,759,293"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="872,189,821,224,760,258,722,270,720,265,758,253,819,220,868,185"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,31,92,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="344,25,92,43,92,38,344,19"/>
+<area shape="rect" id="Node000004" href="$hx711_8c.html#aa3f2bd6b7c47bcd3ccbafcad4e942dd3" title=" " alt="" coords="140,56,263,81"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="345,35,253,59,252,53,344,30"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="126,59,92,53,93,48,127,54"/>
+<area shape="rect" id="Node000006" href="$hx711_8c.html#ac6c8066eeca1a4549359b2da8deda8f9" title=" " alt="" coords="312,55,495,80"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="573,104,468,83,469,77,574,99"/>
+<area shape="rect" id="Node000007" href="$hx711_8c.html#a985ea3f202ebc30a95f6bc340b15ef1e" title=" " alt="" coords="339,104,468,129"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="562,119,468,119,468,114,562,114"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="335,103,255,84,256,79,336,98"/>
+<area shape="rect" id="Node000009" href="$hx711_8c.html#a46c8262ab336340caa474098f940d2d7" title=" " alt="" coords="311,153,496,179"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="545,169,496,169,496,163,545,163"/>
+<area shape="rect" id="Node000011" href="$moving__average_8c.html#a01bb025bfad256b07b248a5cebd569c2" title=" " alt="" coords="312,203,495,243"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="546,226,495,226,495,221,546,221"/>
+</map>

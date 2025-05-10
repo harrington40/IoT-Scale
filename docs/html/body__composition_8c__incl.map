@@ -1,0 +1,19 @@
+<map id="main/body_composition/body_composition.c" name="main/body_composition/body_composition.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="317,5,495,45"/>
+<area shape="rect" id="Node000002" href="$body__composition_8h.html" title=" " alt="" coords="5,93,159,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="329,48,143,93,142,88,328,43"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="183,93,256,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="362,48,260,90,258,85,360,43"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="280,93,348,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="385,48,340,86,336,82,382,44"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="373,93,439,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="409,46,409,79,403,79,403,46"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="464,93,535,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="430,44,476,82,473,86,427,48"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="559,93,658,119"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="456,43,567,86,565,91,454,48"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="683,93,767,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="483,43,670,89,669,94,482,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="41,167,123,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="85,119,85,153,79,153,79,119"/>
+</map>

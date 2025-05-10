@@ -1,0 +1,9 @@
+<map id="ble_app_on_sync" name="ble_app_on_sync">
+<area shape="rect" id="Node000001" title=" " alt="" coords="449,31,583,56"/>
+<area shape="rect" id="Node000002" href="$bluetooth_8c.html#a558b81a2eb010aca50902a52a9dbc921" title=" " alt="" coords="301,5,371,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="435,35,371,26,372,20,436,29"/>
+<area shape="rect" id="Node000003" href="$bluetooth__comm__gatt_8c.html#ae1304212bbefa936b054ce9783f61a42" title=" " alt="" coords="271,55,401,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="436,57,402,61,401,56,435,51"/>
+<area shape="rect" id="Node000004" href="$app__connection__manager_8c.html#a56fc30551431c4c7c6dff275c841f7ab" title="Initialize connection manager." alt="" coords="5,55,223,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="257,70,223,70,223,65,257,65"/>
+</map>

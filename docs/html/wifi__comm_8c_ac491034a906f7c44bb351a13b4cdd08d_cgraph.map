@@ -1,0 +1,27 @@
+<map id="wifi_comm_start" name="wifi_comm_start">
+<area shape="rect" id="Node000001" title="Initialise Wi‑Fi in STA mode, scan for APs, connect to the given SSID/password, and (optionally) star..." alt="" coords="5,104,136,129"/>
+<area shape="rect" id="Node000002" href="$wifi__comm_8c.html#a26f0211cd2ec06e31508899b0eae707d" title=" " alt="" coords="187,55,326,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,101,194,81,195,86,120,107"/>
+<area shape="rect" id="Node000003" href="$wifi__comm_8c.html#af00a27b9e490096d5767f48feed1d3ae" title=" " alt="" coords="184,104,329,129"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="136,114,170,114,170,119,136,119"/>
+<area shape="rect" id="Node000013" href="$wifi__comm_8c.html#a2064b14d9080d81897b7ecda58cb4707" title=" " alt="" coords="198,153,315,179"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="120,127,195,147,194,152,119,132"/>
+<area shape="rect" id="Node000004" href="$hx711_8c.html#a32b4a242719d0a006643ef6fe66650b6" title=" " alt="" coords="388,5,525,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="302,102,328,89,342,77,351,65,361,52,376,40,388,33,390,38,379,44,364,56,355,68,346,81,331,94,305,106"/>
+<area shape="rect" id="Node000005" href="$sntp__synch_8c.html#a78e6192b5fb97b2676f845179584cd4d" title=" " alt="" coords="395,55,519,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="308,101,391,81,392,86,309,107"/>
+<area shape="rect" id="Node000007" href="$sntp__synch_8c.html#a163c19382a04ea22327cebd45733f579" title=" " alt="" coords="379,104,534,129"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="330,114,366,114,366,119,330,119"/>
+<area shape="rect" id="Node000008" href="$wifi__comm_8c.html#a61c868bc85ed2ebbea39dba6aab3ae55" title=" " alt="" coords="394,153,519,179"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="309,127,392,147,391,153,308,132"/>
+<area shape="rect" id="Node000009" href="$weight__manager_8c.html#af363d5c833e2bc81e4ed46769ed2eb08" title="Initialize the weight manager." alt="" coords="377,203,536,228"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="307,127,331,138,346,151,355,164,364,176,379,188,393,195,390,200,376,192,361,180,351,167,342,155,328,143,305,132"/>
+<area shape="rect" id="Node000006" href="$sntp__synch_8c.html#ad0458e91b8c3a87fcacba336d2ce8d16" title=" " alt="" coords="584,55,775,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="519,65,570,65,570,70,519,70"/>
+<area shape="rect" id="Node000010" href="$weight__manager_8c.html#a5427a48300064edb414c8c35b830fadb" title=" " alt="" coords="596,203,763,228"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="536,213,583,213,583,218,536,218"/>
+<area shape="rect" id="Node000011" href="$calibration_8c.html#a290a80f0669ce6f3a5a761650b2cbb28" title="Convert a raw ADC value into weight using the computed model." alt="" coords="823,177,969,203"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="762,203,809,197,810,203,763,208"/>
+<area shape="rect" id="Node000012" href="$weight__manager_8c.html#adedf53bed0b45630ae2b4c1239517b37" title=" " alt="" coords="865,227,927,252"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="763,222,852,232,852,237,762,227"/>
+</map>

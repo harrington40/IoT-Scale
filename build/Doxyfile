@@ -1,0 +1,65 @@
+# Doxyfile 1.9.1 (or later) for IoT-Scale project
+
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+PROJECT_NAME           = "IoT-Scale"
+PROJECT_BRIEF          = "API documentation for the ESP32-based smart scale"
+PROJECT_NUMBER         = "v1.0"
+
+#---------------------------------------------------------------------------
+# Build related configuration options
+#---------------------------------------------------------------------------
+OUTPUT_DIRECTORY       = docs          # “docs/html/” will hold the HTML output
+CREATE_SUBDIRS         = NO            # flat output directories
+
+#---------------------------------------------------------------------------
+# Configuration options related to the input files
+#---------------------------------------------------------------------------
+INPUT                  = main/
+# relative to where you run Doxygen
+RECURSIVE              = YES           # scan all subdirectories under INPUT
+FILE_PATTERNS          = *.c *.h       # only C sources and headers
+
+# If your code uses #include "foo/bar.h", tell Doxygen where to search:
+INCLUDE_PATH           = main
+
+#---------------------------------------------------------------------------
+# Build the documentation even if there are no /** comments */
+#---------------------------------------------------------------------------
+EXTRACT_ALL            = YES
+EXTRACT_STATIC         = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_LOCAL_CLASSES  = YES
+
+#---------------------------------------------------------------------------
+# Preprocessor configuration
+#---------------------------------------------------------------------------
+ENABLE_PREPROCESSING   = YES           # run the C-preprocessor
+MACRO_EXPANSION        = NO            # turn ON only if you need to expand macros
+EXPAND_ONLY_PREDEF     = NO
+
+#---------------------------------------------------------------------------
+# HTML output
+#---------------------------------------------------------------------------
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html          # final docs go to docs/html/
+HTML_FILE_EXTENSION    = .html
+GENERATE_TREEVIEW      = YES           # show a tree navigation pane
+ALIASES                =
+
+#---------------------------------------------------------------------------
+# Diagramming via Graphviz (optional)
+#---------------------------------------------------------------------------
+HAVE_DOT               = YES           # enable call-graphs
+DOT_PATH               =                   # leave blank to use your $PATH
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+DOT_IMAGE_FORMAT       = svg
+
+#---------------------------------------------------------------------------
+# Other optional settings
+#---------------------------------------------------------------------------
+GENERATE_LATEX         = NO            # disable LaTeX/PDF output
+WARN_IF_UNDOCUMENTED   = NO            # avoid noise if most of code lacks comments
+QUIET                  = NO            # show progress during build

@@ -1,0 +1,7 @@
+<map id="app_connection_manager_send_data" name="app_connection_manager_send_data">
+<area shape="rect" id="Node000001" title="Send data through active connections." alt="" coords="5,35,195,75"/>
+<area shape="rect" id="Node000002" href="$bluetooth__comm__gatt_8h.html#aa624c6f2559b9d3bae6834691dc427c5" title=" " alt="" coords="243,5,408,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,40,228,35,229,41,195,45"/>
+<area shape="rect" id="Node000003" href="$wifi__comm_8h.html#abce5f373561b89e594b454bc377f7c6e" title="Send raw bytes to the connected TCP client (if any)." alt="" coords="266,70,385,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="195,64,253,71,252,76,195,69"/>
+</map>

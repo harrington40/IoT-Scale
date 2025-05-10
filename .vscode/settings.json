@@ -8,5 +8,12 @@
     "idf.port": "/dev/ttyUSB0",
     "idf.toolsPath": "/home/harrington/.espressif",
     "C_Cpp.errorSquiggles": "disabled",
-    "idf.flashType": "UART"
+    "idf.flashType": "UART",
+    "files.associations": {
+        "wifi_comm.h": "c",
+        "sntp_synch.h": "c",
+        "calibration.h": "c",
+        "server_cert.h": "c",
+        "nvs_flash.h": "c"
+    }
 }

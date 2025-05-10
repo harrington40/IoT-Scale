@@ -1,0 +1,19 @@
+<map id="kalman_update_adaptive" name="kalman_update_adaptive">
+<area shape="rect" id="Node000001" title=" " alt="" coords="808,56,995,81"/>
+<area shape="rect" id="Node000002" href="$hx711_8c.html#af597cc145be81ec0898873fc0a2e8261" title=" " alt="" coords="357,5,447,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="824,56,760,46,587,30,447,22,448,17,587,25,760,41,825,51"/>
+<area shape="rect" id="Node000005" href="$hx711_8c.html#af0a6adda73c183ed8b4dbd127ff5b35a" title=" " alt="" coords="575,56,726,81"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="794,71,726,71,726,66,794,66"/>
+<area shape="rect" id="Node000008" href="$kalman__filter_8c.html#a6a5c2f67c9e2778a302951971c746815" title=" " alt="" coords="541,105,760,131"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="823,87,717,108,716,103,822,81"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,31,92,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="343,25,93,43,92,38,343,19"/>
+<area shape="rect" id="Node000004" href="$hx711_8c.html#aa3f2bd6b7c47bcd3ccbafcad4e942dd3" title=" " alt="" coords="140,56,263,81"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="344,35,253,59,252,53,342,30"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="126,59,92,53,93,48,127,54"/>
+<area shape="rect" id="Node000006" href="$hx711_8c.html#ac6c8066eeca1a4549359b2da8deda8f9" title=" " alt="" coords="311,55,493,80"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="562,71,493,70,493,65,562,66"/>
+<area shape="rect" id="Node000007" href="$hx711_8c.html#a985ea3f202ebc30a95f6bc340b15ef1e" title=" " alt="" coords="337,104,467,129"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="571,87,467,107,466,102,570,81"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="334,103,254,84,256,79,336,98"/>
+</map>

@@ -1,0 +1,17 @@
+var searchData=
+[
+  ['k_0',['K',['../structKalmanFilter.html#a4e90e610f76437b0699289eb3a65813e',1,'KalmanFilter']]],
+  ['kalman_5fdeinit_1',['kalman_deinit',['../kalman__filter_8c.html#a42e48bd0f6e58e59387904c0415cb588',1,'kalman_deinit(KalmanFilter *kf):&#160;kalman_filter.c'],['../kalman__filter_8h.html#a42e48bd0f6e58e59387904c0415cb588',1,'kalman_deinit(KalmanFilter *kf):&#160;kalman_filter.c']]],
+  ['kalman_5ffilter_2ec_2',['kalman_filter.c',['../kalman__filter_8c.html',1,'']]],
+  ['kalman_5ffilter_2eh_3',['kalman_filter.h',['../kalman__filter_8h.html',1,'']]],
+  ['kalman_5finit_4',['kalman_init',['../kalman__filter_8c.html#ac062a0fa3f2aaa889d7b3534dbbad89e',1,'kalman_init(KalmanFilter *kf, float process_noise, float measurement_noise):&#160;kalman_filter.c'],['../kalman__filter_8h.html#ac062a0fa3f2aaa889d7b3534dbbad89e',1,'kalman_init(KalmanFilter *kf, float process_noise, float measurement_noise):&#160;kalman_filter.c']]],
+  ['kalman_5finit_5fadaptive_5',['kalman_init_adaptive',['../kalman__filter_8c.html#a9343b8ac8c00a1f1b5d288fd921ece81',1,'kalman_init_adaptive(KalmanFilter *kf, float process_noise, float measurement_noise):&#160;kalman_filter.c'],['../kalman__filter_8h.html#a9343b8ac8c00a1f1b5d288fd921ece81',1,'kalman_init_adaptive(KalmanFilter *kf, float process_noise, float measurement_noise):&#160;kalman_filter.c']]],
+  ['kalman_5finit_5frtos_6',['kalman_init_rtos',['../kalman__filter_8c.html#a1aac74c0f25a5003407861b074350a1d',1,'kalman_init_rtos(KalmanFilter *kf, float process_noise, float measurement_noise, bool is_adaptive):&#160;kalman_filter.c'],['../kalman__filter_8h.html#a1aac74c0f25a5003407861b074350a1d',1,'kalman_init_rtos(KalmanFilter *kf, float process_noise, float measurement_noise, bool is_adaptive):&#160;kalman_filter.c']]],
+  ['kalman_5fupdate_7',['kalman_update',['../kalman__filter_8c.html#ae1118eebd680c5abce5d45ab4180ce5d',1,'kalman_update(KalmanFilter *kf, float measurement):&#160;kalman_filter.c'],['../kalman__filter_8h.html#ae1118eebd680c5abce5d45ab4180ce5d',1,'kalman_update(KalmanFilter *kf, float measurement):&#160;kalman_filter.c']]],
+  ['kalman_5fupdate_5fadaptive_8',['kalman_update_adaptive',['../kalman__filter_8c.html#a3c43cf9d9c5ec9875bbfcf351235bd12',1,'kalman_update_adaptive(KalmanFilter *kf, float measurement):&#160;kalman_filter.c'],['../kalman__filter_8h.html#a3c43cf9d9c5ec9875bbfcf351235bd12',1,'kalman_update_adaptive(KalmanFilter *kf, float measurement):&#160;kalman_filter.c']]],
+  ['kalman_5fupdate_5fadaptive_5frtos_9',['kalman_update_adaptive_rtos',['../kalman__filter_8c.html#a6a5c2f67c9e2778a302951971c746815',1,'kalman_update_adaptive_rtos(KalmanFilter *kf, float measurement):&#160;kalman_filter.c'],['../kalman__filter_8h.html#a6a5c2f67c9e2778a302951971c746815',1,'kalman_update_adaptive_rtos(KalmanFilter *kf, float measurement):&#160;kalman_filter.c']]],
+  ['kalman_5fupdate_5frtos_10',['kalman_update_rtos',['../kalman__filter_8c.html#af9010d34bb0c6f44ad568e0f0fd74351',1,'kalman_update_rtos(KalmanFilter *kf, float measurement):&#160;kalman_filter.c'],['../kalman__filter_8h.html#af9010d34bb0c6f44ad568e0f0fd74351',1,'kalman_update_rtos(KalmanFilter *kf, float measurement):&#160;kalman_filter.c']]],
+  ['kalmanfilter_11',['KalmanFilter',['../structKalmanFilter.html',1,'']]],
+  ['kf_5fq_5finit_12',['KF_Q_INIT',['../main_8c.html#aab9128adafe681212d1174e7dd0c6ee7',1,'main.c']]],
+  ['kf_5fr_5finit_13',['KF_R_INIT',['../main_8c.html#ade7f9123541066b1e29358d9f92a9a09',1,'main.c']]]
+];

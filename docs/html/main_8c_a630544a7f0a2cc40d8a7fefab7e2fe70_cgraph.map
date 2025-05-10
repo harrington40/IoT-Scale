@@ -1,0 +1,64 @@
+<map id="app_main" name="app_main">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,183,92,208"/>
+<area shape="rect" id="Node000002" href="$calibration_8c.html#a53e651bc2a9721c33370145ebf5f3fba" title="Single‐point calibration (plus tare)." alt="" coords="140,5,295,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="52,181,80,115,105,74,138,40,146,35,149,39,142,44,110,78,85,117,56,184"/>
+<area shape="rect" id="Node000003" href="$calibration_8c.html#aa712561d2b5257a7596e28d05ddf610a" title="Compute the zero‐offset (tare) by averaging length samples." alt="" coords="155,55,279,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="57,181,90,141,138,97,163,83,166,88,142,101,94,144,61,184"/>
+<area shape="rect" id="Node000004" href="$hx711_8c.html#a32b4a242719d0a006643ef6fe66650b6" title=" " alt="" coords="547,105,684,131"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="87,180,139,166,245,148,352,135,533,120,533,125,352,140,246,153,141,171,88,185"/>
+<area shape="rect" id="Node000005" href="$hx711_8c.html#af597cc145be81ec0898873fc0a2e8261" title=" " alt="" coords="570,383,661,408"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="65,206,98,236,141,266,194,293,251,316,365,351,472,374,557,387,556,392,471,379,364,356,249,321,192,298,139,271,95,240,61,210"/>
+<area shape="rect" id="Node000007" href="$hx711_8c.html#a33bac1c81f0833bc55f0cbbfc34f8c19" title=" " alt="" coords="773,563,903,588"/>
+<area shape="poly" id="edge20_Node000001_Node000007" title=" " alt="" coords="53,208,58,253,72,316,84,350,99,383,118,414,142,441,176,469,212,494,291,532,375,559,462,576,547,585,627,588,759,582,760,588,627,593,547,591,461,582,374,564,289,537,209,498,172,474,138,445,114,417,94,386,79,352,67,317,53,254,48,209"/>
+<area shape="rect" id="Node000013" href="$hx711_8c.html#aa3f2bd6b7c47bcd3ccbafcad4e942dd3" title=" " alt="" coords="156,407,279,432"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="55,208,64,243,81,290,107,341,142,385,160,398,157,403,138,389,102,343,76,292,59,244,50,209"/>
+<area shape="rect" id="Node000017" href="$weight__manager_8c.html#af363d5c833e2bc81e4ed46769ed2eb08" title="Initialize the weight manager." alt="" coords="536,155,695,180"/>
+<area shape="poly" id="edge21_Node000001_Node000017" title=" " alt="" coords="92,191,522,169,522,175,93,196"/>
+<area shape="rect" id="Node000021" href="$wifi__comm_8c.html#ac491034a906f7c44bb351a13b4cdd08d" title="Initialise Wi‑Fi in STA mode, scan for APs, connect to the given SSID/password, and (optionally) star..." alt="" coords="152,232,283,257"/>
+<area shape="poly" id="edge25_Node000001_Node000021" title=" " alt="" coords="93,205,161,225,159,231,92,210"/>
+<area shape="rect" id="Node000006" href="$hx711_8c.html#a4990d54a108524be3776bdca31a1e1bd" title=" " alt="" coords="759,251,917,291"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="633,380,693,337,716,318,741,301,756,294,758,299,744,306,719,322,696,341,636,385"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="642,406,670,425,697,450,713,478,719,503,726,527,744,549,762,560,759,564,741,553,721,529,714,504,708,479,693,453,667,429,639,410"/>
+<area shape="rect" id="Node000008" href="$kalman__filter_8c.html#a9343b8ac8c00a1f1b5d288fd921ece81" title=" " alt="" coords="757,316,919,341"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="651,380,742,350,770,342,771,348,743,355,653,385"/>
+<area shape="rect" id="Node000010" href="$kalman__filter_8c.html#a3c43cf9d9c5ec9875bbfcf351235bd12" title=" " alt="" coords="745,464,931,489"/>
+<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="643,406,744,449,771,458,769,463,742,454,641,411"/>
+<area shape="rect" id="Node000011" href="$moving__average_8c.html#a5b4f3147f4bc47ab394e00ab409c13ce" title=" " alt="" coords="759,365,917,391"/>
+<area shape="poly" id="edge10_Node000005_Node000011" title=" " alt="" coords="661,389,745,383,745,388,661,394"/>
+<area shape="rect" id="Node000012" href="$moving__average_8c.html#ae8fe422690653cafb6e68f34a5ec7658" title=" " alt="" coords="747,415,929,440"/>
+<area shape="poly" id="edge11_Node000005_Node000012" title=" " alt="" coords="662,399,737,410,736,415,661,404"/>
+<area shape="rect" id="Node000009" href="$kalman__filter_8c.html#ac062a0fa3f2aaa889d7b3534dbbad89e" title=" " alt="" coords="1005,316,1104,341"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="920,326,991,326,991,331,920,331"/>
+<area shape="poly" id="edge13_Node000013_Node000005" title=" " alt="" coords="279,413,556,396,556,401,279,418"/>
+<area shape="rect" id="Node000014" href="$hx711_8c.html#a985ea3f202ebc30a95f6bc340b15ef1e" title=" " alt="" coords="351,461,480,487"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="265,429,356,455,355,460,263,435"/>
+<area shape="rect" id="Node000015" href="$hx711_8c.html#af0a6adda73c183ed8b4dbd127ff5b35a" title=" " alt="" coords="540,464,691,489"/>
+<area shape="poly" id="edge15_Node000014_Node000015" title=" " alt="" coords="480,472,526,473,526,478,480,478"/>
+<area shape="poly" id="edge16_Node000015_Node000007" title=" " alt="" coords="636,487,684,518,744,549,764,556,762,561,742,554,681,523,633,492"/>
+<area shape="poly" id="edge17_Node000015_Node000010" title=" " alt="" coords="691,474,731,474,731,479,691,479"/>
+<area shape="poly" id="edge19_Node000015_Node000012" title=" " alt="" coords="673,461,766,440,767,446,674,467"/>
+<area shape="rect" id="Node000016" href="$moving__average_8c.html#a6336a0eede30b660dc06e9b149f6c143" title=" " alt="" coords="753,513,923,539"/>
+<area shape="poly" id="edge18_Node000015_Node000016" title=" " alt="" coords="674,487,767,508,766,513,673,492"/>
+<area shape="rect" id="Node000018" href="$weight__manager_8c.html#a5427a48300064edb414c8c35b830fadb" title=" " alt="" coords="755,152,921,177"/>
+<area shape="poly" id="edge22_Node000017_Node000018" title=" " alt="" coords="695,164,741,163,741,168,695,169"/>
+<area shape="rect" id="Node000019" href="$calibration_8c.html#a290a80f0669ce6f3a5a761650b2cbb28" title="Convert a raw ADC value into weight using the computed model." alt="" coords="981,177,1128,203"/>
+<area shape="poly" id="edge23_Node000018_Node000019" title=" " alt="" coords="922,172,968,177,968,183,921,177"/>
+<area shape="rect" id="Node000020" href="$weight__manager_8c.html#adedf53bed0b45630ae2b4c1239517b37" title=" " alt="" coords="1024,128,1085,153"/>
+<area shape="poly" id="edge24_Node000018_Node000020" title=" " alt="" coords="921,153,1010,143,1011,148,922,158"/>
+<area shape="rect" id="Node000022" href="$wifi__comm_8c.html#a26f0211cd2ec06e31508899b0eae707d" title=" " alt="" coords="346,256,485,281"/>
+<area shape="poly" id="edge26_Node000021_Node000022" title=" " alt="" coords="283,250,333,256,332,261,283,255"/>
+<area shape="rect" id="Node000023" href="$wifi__comm_8c.html#af00a27b9e490096d5767f48feed1d3ae" title=" " alt="" coords="343,207,488,232"/>
+<area shape="poly" id="edge27_Node000021_Node000023" title=" " alt="" coords="283,234,329,228,329,233,284,239"/>
+<area shape="rect" id="Node000028" href="$wifi__comm_8c.html#a2064b14d9080d81897b7ecda58cb4707" title=" " alt="" coords="357,305,474,331"/>
+<area shape="poly" id="edge34_Node000021_Node000028" title=" " alt="" coords="252,255,344,290,366,298,364,303,342,295,250,260"/>
+<area shape="poly" id="edge28_Node000023_Node000004" title=" " alt="" coords="432,204,477,173,535,140,552,133,554,138,537,144,480,177,435,209"/>
+<area shape="poly" id="edge33_Node000023_Node000017" title=" " alt="" coords="464,204,552,181,554,186,466,209"/>
+<area shape="rect" id="Node000024" href="$sntp__synch_8c.html#a78e6192b5fb97b2676f845179584cd4d" title=" " alt="" coords="553,204,677,229"/>
+<area shape="poly" id="edge29_Node000023_Node000024" title=" " alt="" coords="488,216,539,215,539,220,489,221"/>
+<area shape="rect" id="Node000026" href="$sntp__synch_8c.html#a163c19382a04ea22327cebd45733f579" title=" " alt="" coords="538,253,693,279"/>
+<area shape="poly" id="edge31_Node000023_Node000026" title=" " alt="" coords="471,229,548,248,546,253,470,235"/>
+<area shape="rect" id="Node000027" href="$wifi__comm_8c.html#a61c868bc85ed2ebbea39dba6aab3ae55" title=" " alt="" coords="553,303,678,328"/>
+<area shape="poly" id="edge32_Node000023_Node000027" title=" " alt="" coords="466,230,489,241,505,253,514,265,523,277,537,288,552,295,549,300,535,292,519,280,510,268,501,257,487,246,463,234"/>
+<area shape="rect" id="Node000025" href="$sntp__synch_8c.html#ad0458e91b8c3a87fcacba336d2ce8d16" title=" " alt="" coords="743,201,933,227"/>
+<area shape="poly" id="edge30_Node000024_Node000025" title=" " alt="" coords="677,213,729,213,729,218,677,219"/>
+</map>

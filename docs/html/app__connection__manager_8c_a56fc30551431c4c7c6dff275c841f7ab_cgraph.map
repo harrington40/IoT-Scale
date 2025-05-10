@@ -1,0 +1,11 @@
+<map id="app_connection_manager_init" name="app_connection_manager_init">
+<area shape="rect" id="Node000001" title="Initialize connection manager." alt="" coords="5,55,223,80"/>
+<area shape="rect" id="Node000002" href="$bluetooth__comm__gatt_8c.html#ae1304212bbefa936b054ce9783f61a42" title=" " alt="" coords="297,29,427,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,54,283,47,283,53,223,59"/>
+<area shape="rect" id="Node000005" href="$app__connection__manager_8c.html#abc984bc317c57837dcce17cfb08ea7f4" title=" " alt="" coords="271,79,453,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="223,75,257,79,257,84,223,81"/>
+<area shape="rect" id="Node000003" href="$bluetooth_8c.html#a3751d2a71d6a2fab013b5c402ff546bf" title=" " alt="" coords="501,5,635,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="427,32,487,25,488,30,428,37"/>
+<area shape="rect" id="Node000004" href="$bluetooth__comm__gatt_8c.html#a4bf56e512c1a541a007522b29a19e144" title=" " alt="" coords="512,55,624,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="428,47,498,56,498,61,427,53"/>
+</map>

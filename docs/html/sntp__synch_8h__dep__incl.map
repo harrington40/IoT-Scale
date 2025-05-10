@@ -1,0 +1,9 @@
+<map id="main/sntp_synch/sntp_synch.h" name="main/sntp_synch/sntp_synch.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="196,5,360,45"/>
+<area shape="rect" id="Node000002" href="$sntp__synch_8c.html" title=" " alt="" coords="5,93,169,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,53,130,96,128,91,223,49"/>
+<area shape="rect" id="Node000003" href="$weight__manager_8c.html" title=" " alt="" coords="194,93,362,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="281,59,281,93,275,93,275,59"/>
+<area shape="rect" id="Node000004" href="$wifi__comm_8c.html" title=" " alt="" coords="386,101,554,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="334,49,446,98,443,103,332,53"/>
+</map>

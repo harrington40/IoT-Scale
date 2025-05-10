@@ -1,0 +1,21 @@
+<map id="wifi_event_handler" name="wifi_event_handler">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,104,151,129"/>
+<area shape="rect" id="Node000002" href="$hx711_8c.html#a32b4a242719d0a006643ef6fe66650b6" title=" " alt="" coords="209,5,347,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,102,140,71,198,40,214,33,216,38,200,44,143,76,98,106"/>
+<area shape="rect" id="Node000003" href="$sntp__synch_8c.html#a78e6192b5fb97b2676f845179584cd4d" title=" " alt="" coords="216,55,340,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,101,212,81,213,86,131,107"/>
+<area shape="rect" id="Node000005" href="$sntp__synch_8c.html#a163c19382a04ea22327cebd45733f579" title=" " alt="" coords="201,104,355,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="151,114,187,114,187,119,151,119"/>
+<area shape="rect" id="Node000006" href="$wifi__comm_8c.html#a61c868bc85ed2ebbea39dba6aab3ae55" title=" " alt="" coords="215,153,341,179"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="131,127,213,147,212,153,130,132"/>
+<area shape="rect" id="Node000007" href="$weight__manager_8c.html#af363d5c833e2bc81e4ed46769ed2eb08" title="Initialize the weight manager." alt="" coords="199,203,357,228"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="99,127,144,157,200,188,219,196,217,201,198,192,141,161,96,132"/>
+<area shape="rect" id="Node000004" href="$sntp__synch_8c.html#ad0458e91b8c3a87fcacba336d2ce8d16" title=" " alt="" coords="405,55,596,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="340,65,392,65,392,70,340,70"/>
+<area shape="rect" id="Node000008" href="$weight__manager_8c.html#a5427a48300064edb414c8c35b830fadb" title=" " alt="" coords="417,203,584,228"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="358,213,404,213,404,218,358,218"/>
+<area shape="rect" id="Node000009" href="$calibration_8c.html#a290a80f0669ce6f3a5a761650b2cbb28" title="Convert a raw ADC value into weight using the computed model." alt="" coords="644,177,791,203"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="584,203,630,197,631,203,584,208"/>
+<area shape="rect" id="Node000010" href="$weight__manager_8c.html#adedf53bed0b45630ae2b4c1239517b37" title=" " alt="" coords="687,227,748,252"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="584,222,674,232,673,237,584,227"/>
+</map>

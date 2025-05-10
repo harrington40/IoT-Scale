@@ -1,0 +1,17 @@
+<map id="main/moving_avg/moving_average.c" name="main/moving_avg/moving_average.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="137,5,329,45"/>
+<area shape="rect" id="Node000002" href="$moving__average_8h.html" title=" " alt="" coords="161,93,304,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="235,46,235,79,230,79,230,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,76,192"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="204,48,136,95,64,159,60,155,132,91,201,43"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="100,167,171,192"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="200,47,173,68,151,95,141,124,137,153,132,152,135,122,146,92,169,64,197,43"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="195,167,345,192"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="270,43,297,64,318,92,321,110,317,128,295,159,291,156,312,126,316,110,313,94,293,68,267,47"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="369,167,507,192"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="266,43,338,91,417,156,414,160,335,95,263,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="203,121,86,164,84,159,201,116"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="219,121,164,160,161,156,215,117"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="241,118,260,153,255,156,236,120"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="267,116,393,160,391,165,265,121"/>
+</map>

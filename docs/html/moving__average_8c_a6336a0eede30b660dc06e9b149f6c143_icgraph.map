@@ -1,0 +1,19 @@
+<map id="moving_average_reset" name="moving_average_reset">
+<area shape="rect" id="Node000001" title=" " alt="" coords="795,104,965,129"/>
+<area shape="rect" id="Node000002" href="$hx711_8c.html#af0a6adda73c183ed8b4dbd127ff5b35a" title=" " alt="" coords="570,55,721,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="805,104,706,83,707,77,806,99"/>
+<area shape="rect" id="Node000007" href="$hx711_8c.html#a1a9420f9643f715e8f5e45e342ffbf8a" title=" " alt="" coords="552,104,739,129"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="781,119,739,119,739,114,781,114"/>
+<area shape="rect" id="Node000009" href="$moving__average_8c.html#a48eb0f6326626f77ecbd420f8706b0c2" title=" " alt="" coords="544,153,747,179"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="806,135,707,156,706,151,805,130"/>
+<area shape="rect" id="Node000003" href="$hx711_8c.html#ac6c8066eeca1a4549359b2da8deda8f9" title=" " alt="" coords="312,5,495,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="569,54,466,33,467,28,570,49"/>
+<area shape="rect" id="Node000004" href="$hx711_8c.html#a985ea3f202ebc30a95f6bc340b15ef1e" title=" " alt="" coords="339,55,468,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="556,70,468,70,468,65,556,65"/>
+<area shape="rect" id="Node000005" href="$hx711_8c.html#aa3f2bd6b7c47bcd3ccbafcad4e942dd3" title=" " alt="" coords="140,55,263,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="324,70,263,70,263,65,324,65"/>
+<area shape="rect" id="Node000006" href="$main_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,55,92,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="126,70,92,70,92,65,126,65"/>
+<area shape="rect" id="Node000008" href="$hx711_8c.html#a46c8262ab336340caa474098f940d2d7" title=" " alt="" coords="311,104,496,129"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="538,119,496,119,496,114,538,114"/>
+</map>
