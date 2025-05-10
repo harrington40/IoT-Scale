@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "scale_simple",
-    "project_version":    "6c60e52-dirty",
+    "project_version":    "3d5f6f2-dirty",
     "project_path":       "/home/harrington/scale_iot_design_04-30-2025",
     "idf_path":           "/home/harrington/esp/v5.4.1/esp-idf",
     "build_dir":          "/home/harrington/scale_iot_design_04-30-2025/build",

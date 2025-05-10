@@ -20,15 +20,18 @@
 // Wi-Fi
 #include "wifi/wifi_comm.h"
 
+// SNTP
+#include "sntp_synch.h"         // for sntp_sync_start(), sntp_time_available()
+
 // HX711 driver
 #include "hx711.h"
 #include "driver/gpio.h"
 
 // Weight manager
 #include "weight_manager.h"
-#include "sntp_synch.h"         // for sntp_sync_start(), sntp_time_available()
 #include "esp_http_server.h"
 #include "esp_https_server.h"
+
 // Calibration
 #include "calibration.h"
 
@@ -47,6 +50,7 @@
 #define KF_Q_INIT           0.5f
 #define KF_R_INIT           1.0f
 static void *https_server = NULL;
+
 // Calibration samples & weight
 #define CAL_SAMPLES         10
 #define CAL_KNOWN_WEIGHT_G  200.0f
@@ -102,10 +106,23 @@ void app_main(void)
                 g_calib.slope, g_calib.intercept);
     }
 
-    // 2) Bring up Wi-Fi, SNTP, echo server, power-save, etc.
+    // 2) Bring up Wi-Fi
     wifi_comm_start(WIFI_SSID, WIFI_PASS);
 
-    // 3) Start HX711 RTOS driver (creates hx711 queue internally)
+    // Wait for Wi-Fi to be connected (before SNTP)
+    int retries = 0;
+    while (!wifi_is_connected() && retries++ < 20) {
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
+    if (!wifi_is_connected()) {
+        LOG_ROW(TAG, "Wi-Fi not connected, continuing without SNTP");
+    } else {
+        // 3) Start SNTP client
+        LOG_ROW(TAG, "Starting SNTP client...");
+        sntp_sync_start();
+    }
+
+    // 4) Start HX711 RTOS driver (creates hx711 queue internally)
     hx711_init_rtos(&g_scale,
                     HX711_DOUT_PIN,
                     HX711_SCK_PIN,
@@ -116,40 +133,34 @@ void app_main(void)
                     KF_R_INIT,
                     5);  // task priority
 
-    // 4) Start the weight manager immediately so you see live readings
+    // 5) Start the weight manager (will wait for SNTP internally)
     weight_manager_init(hx711_get_queue(), &g_calib);
 
-    // 5) Start HTTPS server after network is up and weight system is running
-    // Wait for Wi-Fi to be connected first
-    int retries = 0;
-    while (!wifi_is_connected() && retries++ < 20) {
-        vTaskDelay(pdMS_TO_TICKS(500));
-    }
-    
+    // 6) Start HTTPS server after network is up
     if (wifi_is_connected()) {
         LOG_ROW(TAG, "Starting HTTPS server...");
         init_https_server();
     } else {
-        LOG_ROW(TAG, "Wi-Fi not connected, skipping HTTPS server start");
+        LOG_ROW(TAG, "Skipping HTTPS server start");
     }
 
     // Main loop - monitor system health
     for (;;) {
         static uint32_t counter = 0;
-        
+
         // Periodic status report
-        if (++counter % 60 == 0) {  // Every 60 seconds
+        if (++counter % 60 == 0) {
             LOG_ROW(TAG, "System status - Wi-Fi: %s, HTTPS: %s",
-                   wifi_is_connected() ? "connected" : "disconnected",
-                   https_server_is_running() ? "running" : "stopped");
-            
-            // Attempt to restart HTTPS server if Wi-Fi is back but server is down
+                    wifi_is_connected() ? "connected" : "disconnected",
+                    https_server_is_running() ? "running" : "stopped");
+
+            // Attempt to restart HTTPS server if needed
             if (wifi_is_connected() && !https_server_is_running()) {
                 LOG_ROW(TAG, "Attempting HTTPS server restart...");
                 init_https_server();
             }
         }
-        
+
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }

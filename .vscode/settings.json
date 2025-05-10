@@ -14,6 +14,7 @@
         "sntp_synch.h": "c",
         "calibration.h": "c",
         "server_cert.h": "c",
-        "nvs_flash.h": "c"
+        "nvs_flash.h": "c",
+        "event_groups.h": "c"
     }
 }

@@ -1,4 +1,1 @@
-0000000000000000000000000000000000000000 afcacdb7286dfe460471ccf930caa4c380010abe harrington40 <harrington.ricks@live.com> 1746559449 -0400	branch: Created from HEAD
-afcacdb7286dfe460471ccf930caa4c380010abe decf5a532a3b8bf0acc2ff7a9dce7cc2b2e8fbfa harrington40 <harrington.ricks@live.com> 1746560715 -0400	commit: Initial import of IoT-Scale project
-decf5a532a3b8bf0acc2ff7a9dce7cc2b2e8fbfa abd18373967d1e83a4a9966023b1456a88ac0b59 harrington40 <harrington.ricks@live.com> 1746567603 -0400	commit: docs: fix Doxygen config (INPUT paths and OUTPUT_DIRECTORY)
-abd18373967d1e83a4a9966023b1456a88ac0b59 6c60e52289a0b295bc8a0fb804311eec9ece7d65 harrington40 <harrington.ricks@live.com> 1746764273 -0400	commit: https certificate added to esp32 fw
+3d5f6f261d3ba82275467779b104e743e85d6669
