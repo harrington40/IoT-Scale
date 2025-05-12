@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "scale_simple",
-    "project_version":    "6c60e52-dirty",
+    "project_version":    "3d5f6f2-dirty",
     "project_path":       "/home/harrington/scale_iot_design_04-30-2025",
     "idf_path":           "/home/harrington/esp/v5.4.1/esp-idf",
     "build_dir":          "/home/harrington/scale_iot_design_04-30-2025/build",
@@ -1195,8 +1195,8 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "/home/harrington/scale_iot_design_04-30-2025/build/esp-idf/main/libmain.a",
-            "sources": [ "/home/harrington/scale_iot_design_04-30-2025/main/main.c", "/home/harrington/scale_iot_design_04-30-2025/main/certs/server_cert.c", "/home/harrington/scale_iot_design_04-30-2025/main/hx711/hx711.c", "/home/harrington/scale_iot_design_04-30-2025/main/calibration/calibration.c", "/home/harrington/scale_iot_design_04-30-2025/main/kalman_filter/kalman_filter.c", "/home/harrington/scale_iot_design_04-30-2025/main/moving_avg/moving_average.c", "/home/harrington/scale_iot_design_04-30-2025/main/weight_manager/weight_manager.c", "/home/harrington/scale_iot_design_04-30-2025/main/wifi_power_management/wifi_power_management.c", "/home/harrington/scale_iot_design_04-30-2025/main/wifi/wifi_comm.c", "/home/harrington/scale_iot_design_04-30-2025/main/bluetooth/bluetooth.c", "/home/harrington/scale_iot_design_04-30-2025/main/body_composition/body_composition.c", "/home/harrington/scale_iot_design_04-30-2025/main/spiffs_manager/spiffs_manager.c", "/home/harrington/scale_iot_design_04-30-2025/main/sntp_synch/sntp_synch.c", "/home/harrington/scale_iot_design_04-30-2025/main/bluetooth_comm_gatt/bluetooth_comm_gatt.c", "/home/harrington/scale_iot_design_04-30-2025/build/fullchain.crt.S", "/home/harrington/scale_iot_design_04-30-2025/build/server.key.S" ],
-            "include_dirs": [ ".", "hx711", "calibration", "kalman_filter", "moving_avg", "weight_manager", "wifi_power_management", "wifi", "bluetooth", "body_composition", "spiffs_manager", "sntp_synch", "bluetooth_comm_gatt", "log_utils", "certs" ]
+            "sources": [ "/home/harrington/scale_iot_design_04-30-2025/main/main.c", "/home/harrington/scale_iot_design_04-30-2025/main/hx711/hx711.c", "/home/harrington/scale_iot_design_04-30-2025/main/calibration/calibration.c", "/home/harrington/scale_iot_design_04-30-2025/main/kalman_filter/kalman_filter.c", "/home/harrington/scale_iot_design_04-30-2025/main/moving_avg/moving_average.c", "/home/harrington/scale_iot_design_04-30-2025/main/weight_manager/weight_manager.c", "/home/harrington/scale_iot_design_04-30-2025/main/wifi_power_management/wifi_power_management.c", "/home/harrington/scale_iot_design_04-30-2025/main/wifi/wifi_comm.c", "/home/harrington/scale_iot_design_04-30-2025/main/bluetooth/bluetooth.c", "/home/harrington/scale_iot_design_04-30-2025/main/body_composition/body_composition.c", "/home/harrington/scale_iot_design_04-30-2025/main/spiffs_manager/spiffs_manager.c", "/home/harrington/scale_iot_design_04-30-2025/main/sntp_synch/sntp_synch.c", "/home/harrington/scale_iot_design_04-30-2025/main/bluetooth_comm_gatt/bluetooth_comm_gatt.c", "/home/harrington/scale_iot_design_04-30-2025/main/wifi_https_server/wifi_https_server.c", "/home/harrington/scale_iot_design_04-30-2025/build/fullchain.pem.S", "/home/harrington/scale_iot_design_04-30-2025/build/privkey.pem.S" ],
+            "include_dirs": [ ".", "hx711", "calibration", "kalman_filter", "moving_avg", "weight_manager", "wifi_power_management", "wifi", "bluetooth", "body_composition", "spiffs_manager", "sntp_synch", "bluetooth_comm_gatt", "log_utils", "certs", "wifi_https_server" ]
         },
         "mbedtls": {
             "alias": "idf::mbedtls",
@@ -2845,7 +2845,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": [ ".", "hx711", "calibration", "kalman_filter", "moving_avg", "weight_manager", "wifi_power_management", "wifi", "bluetooth", "body_composition", "spiffs_manager", "sntp_synch", "bluetooth_comm_gatt", "log_utils", "certs" ]
+            "include_dirs": [ ".", "hx711", "calibration", "kalman_filter", "moving_avg", "weight_manager", "wifi_power_management", "wifi", "bluetooth", "body_composition", "spiffs_manager", "sntp_synch", "bluetooth_comm_gatt", "log_utils", "certs", "wifi_https_server" ]
         }
     },
     "debug_prefix_map_gdbinit": "",

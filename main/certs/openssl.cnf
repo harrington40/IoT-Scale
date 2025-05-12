@@ -1,0 +1,12 @@
+[ req ]
+distinguished_name = req_distinguished_name
+req_extensions     = v3_req
+prompt             = no
+
+[ req_distinguished_name ]
+CN = ESP32 HTTPS server example
+
+[ v3_req ]
+keyUsage = critical,digitalSignature,keyEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = DNS:esp32,IP:192.168.1.100

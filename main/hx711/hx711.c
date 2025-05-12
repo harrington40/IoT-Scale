@@ -326,3 +326,8 @@ void hx711_rtos_median_task(void *pvParameters) {
         vTaskDelay(xDelay);
     }
 }
+
+float hx711_get_latest_reading(void)
+{
+    return s_last_output;
+}

@@ -1,13 +1,13 @@
 idf_component_register(
     
 
-    EMBED_FILES 
-     "certs/fullchain.crt"
-     "certs/server.key"   
+    EMBED_TXTFILES 
+       "certs/fullchain.pem"
+       "certs/privkey.pem"   
         
     SRCS  
         "main.c"
-        "certs/server_cert.c"
+        
         "hx711/hx711.c"
         "calibration/calibration.c"
         "kalman_filter/kalman_filter.c"
@@ -20,6 +20,7 @@ idf_component_register(
         "spiffs_manager/spiffs_manager.c"
         "sntp_synch/sntp_synch.c"
         "bluetooth_comm_gatt/bluetooth_comm_gatt.c"
+        "wifi_https_server/wifi_https_server.c"       
         
     INCLUDE_DIRS
         
@@ -38,6 +39,7 @@ idf_component_register(
         "bluetooth_comm_gatt"
         "log_utils"
         "certs"
+        "wifi_https_server"
    
     
         

@@ -73,7 +73,7 @@ void hx711_rtos_task(void *pvParameters);
 // RTOS read functions
 int32_t hx711_read_raw_rtos(hx711_t *scale);
 float hx711_read_filtered_rtos(hx711_t *scale);
-
+float    hx711_get_latest_reading(void);
 // Cleanup
 void hx711_deinit(hx711_t *scale);
 
