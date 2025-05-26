@@ -11,6 +11,8 @@ idf_component_register(
         "hx711/hx711.c"
         "calibration/calibration.c"
         "kalman_filter/kalman_filter.c"
+        "bluetooth_nimble/blue_tooth.c"
+        
         "moving_avg/moving_average.c"
         "weight_manager/weight_manager.c"
         "wifi_power_management/wifi_power_management.c"
@@ -19,7 +21,7 @@ idf_component_register(
         "body_composition/body_composition.c"
         "spiffs_manager/spiffs_manager.c"
         "sntp_synch/sntp_synch.c"
-        "bluetooth_comm_gatt/bluetooth_comm_gatt.c"
+        
         "wifi_https_server/wifi_https_server.c"       
         
     INCLUDE_DIRS
@@ -32,11 +34,11 @@ idf_component_register(
         "weight_manager" # for hx711/hx711.h
         "wifi_power_management"
         "wifi"
-        "bluetooth"
+        "bluetooth_nimble"
         "body_composition"
         "spiffs_manager"
         "sntp_synch"
-        "bluetooth_comm_gatt"
+        
         "log_utils"
         "certs"
         "wifi_https_server"

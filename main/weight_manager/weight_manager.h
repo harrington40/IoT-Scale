@@ -11,6 +11,13 @@
 extern "C" {
 #endif
 
+
+#ifndef QueueHandle_t
+typedef struct QueueDefinition *QueueHandle_t;
+#endif
+
+extern QueueHandle_t g_weight_queue;
+
 // Weight Manager thresholds (grams)
 #ifndef WM_WAKE_THRESHOLD_G
 #define WM_WAKE_THRESHOLD_G     200.0f

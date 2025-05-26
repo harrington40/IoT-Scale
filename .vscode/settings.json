@@ -16,6 +16,7 @@
         "server_cert.h": "c",
         "nvs_flash.h": "c",
         "wifi_https_server.h": "c",
-        "error.h": "c"
+        "error.h": "c",
+        "weight_manager.h": "c"
     }
 }

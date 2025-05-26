@@ -24,7 +24,7 @@
 
 static QueueHandle_t  wm_queue = NULL;  // HX711 counts (float)
 static calibration_t *wm_calib = NULL;
-
+ QueueHandle_t g_weight_queue = NULL;
 typedef enum { WM_SLEEPING = 0, WM_ACTIVE } wm_state_t;
 
 /**
@@ -99,6 +99,7 @@ static void weight_manager_task(void *arg)
 
 void weight_manager_init(QueueHandle_t hx711_queue, calibration_t *calib)
 {
+      g_weight_queue = xQueueCreate(10, sizeof(float));
     if (!wm_queue) {
         wm_queue = hx711_queue
                    ? hx711_queue
