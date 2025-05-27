@@ -16,8 +16,13 @@
 #include "weight_manager.h"
 #include "sntp_synch.h"
 #include "calibration.h"
-#include "blue_tooth.h"
+#include "ble_secure_server.h"
 
+#include "esp_bt.h"
+#include "esp_bt_main.h"
+#include "esp_bt_device.h"
+#include "esp_gap_ble_api.h"
+#include "esp_gatts_api.h"
 // Configuration
 #define WIFI_SSID           "Tori_2.44Ghz"
 #define WIFI_PASS           "Logarithmses900"
@@ -43,49 +48,7 @@ httpd_handle_t https_server = NULL;
 extern QueueHandle_t g_weight_queue;
 
 // Bluetooth task
-static void bluetooth_task(void *pvParameters) {
-    float current_weight;
-    bool current_stable = false;
-    float last_weight = 0;
-    TickType_t xLastWakeTime = xTaskGetTickCount();
-    
-    while (1) {
-        if (xQueueReceive(g_weight_queue, &current_weight, 0) == pdTRUE) {
-            current_stable = (fabs(current_weight - last_weight) < 5.0f);
-            last_weight = current_weight;
-            bluetooth_update_weight(current_weight, current_stable);
-        }
-        vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(WEIGHT_UPDATE_MS));
-    }
-}
 
-void initialize_bluetooth(void) {
-    // 1. Initialize the Bluetooth controller
-    esp_bt_controller_config_t bt_cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();
-    
-    // 2. Initialize the controller
-    if (esp_bt_controller_init(&bt_cfg) != ESP_OK) {
-        ESP_LOGE(TAG, "Bluetooth controller init failed");
-        return;
-    }
-
-    // 3. Enable the controller in BLE mode
-    if (esp_bt_controller_enable(ESP_BT_MODE_BLE) != ESP_OK) {
-        ESP_LOGE(TAG, "Bluetooth controller enable failed");
-        esp_bt_controller_deinit();
-        return;
-    }
-
-    // 4. Initialize NimBLE stack
-    if (bluetooth_nimble_init() != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to initialize NimBLE");
-        esp_bt_controller_disable();
-        esp_bt_controller_deinit();
-        return;
-    }
-
-    ESP_LOGI(TAG, "Bluetooth initialized successfully");
-}
 
 
 void initialize_nvs(void) {
@@ -104,16 +67,17 @@ bool https_server_is_running(void) {
     return (https_server != NULL);
 }
 
-
-
-
 void app_main(void) {
     LOG_ROW(TAG, "=== Smart-Scale FW starting ===");
     
     // 1. Initialize NVS and Bluetooth memory
     initialize_nvs();
 
-    // 2. Calibration
+    // 2. Initialize Bluetooth (before Wi-Fi)
+    LOG_ROW(TAG, "Initializing Bluetooth...");
+ 
+
+    // 3. Calibration
     {
         int32_t raw_buf[CAL_SAMPLES];
         int32_t zero_raw = 0;
@@ -140,10 +104,8 @@ void app_main(void) {
         LOG_ROW(TAG, "Calibration: slope=%.6f intercept=%.2f",
                 g_calib.slope, g_calib.intercept);
     }
-
-    // 3. Initialize Bluetooth (before Wi-Fi)
-    LOG_ROW(TAG, "Initializing Bluetooth...");
-    initialize_bluetooth();
+      
+  ble_secure_server_init();
 
     // 4. Initialize Wi-Fi
     wifi_comm_start(WIFI_SSID, WIFI_PASS);
@@ -169,20 +131,8 @@ void app_main(void) {
     }
 
     // Main monitoring loop
-    for (;;) {
-        static uint32_t counter = 0;
-        
-        if (++counter % 60 == 0) {
-            LOG_ROW(TAG, "System status - Wi-Fi: %s, HTTPS: %s, BT: %s",
-                   wifi_is_connected() ? "connected" : "disconnected",
-                   https_server_is_running() ? "running" : "stopped",
-                   bluetooth_is_connected() ? "connected" : "disconnected");
-            
-            if (wifi_is_connected() && !https_server_is_running()) {
-                LOG_ROW(TAG, "Attempting HTTPS server restart...");
-                init_https_server();
-            }
-        }
-        vTaskDelay(pdMS_TO_TICKS(1000));
-    }
 }
+
+
+
+

@@ -8,25 +8,17 @@
 // #include "esp_gap_ble_api.h"
 
 // Include NimBLE headers for BLE APIs.
-#include "nimble/ble.h"
-#include "host/ble_hs.h"
-#include "host/ble_gap.h"
+
+
 
 // Tag for logging
 static const char *TAG = "Wi-Fi Power Management";
 
 // Global BLE connection handle.
 // This should be maintained by your BLE module.
-uint16_t current_conn_handle = BLE_HS_CONN_HANDLE_NONE;
+
 
 // Define BLE connection update parameters for low-power operation.
-// Note: Use the structure 'ble_gap_upd_params' as required by ble_gap_update_params().
-static struct ble_gap_upd_params upd_params = {
-    .itvl_min = 0x30,              // 0x30 * 1.25 ms = 60 ms
-    .itvl_max = 0x50,              // 0x50 * 1.25 ms = 100 ms
-    .latency = 0,
-    .supervision_timeout = 400     // 400 * 10 ms = 4000 ms
-};
 
 //------------------------------------------------------------------------------
 // Power Management Functions Using NimBLE
@@ -83,31 +75,10 @@ void wifi_active_mode(void)
 }
 
 // Put BLE into advertising sleep mode (stop advertising) using NimBLE.
-void ble_advertising_sleep(void)
-{
-    int rc = ble_gap_adv_stop();
-    if (rc == 0) {
-        ESP_LOGI(TAG, "BLE advertising stopped for power saving");
-    } else {
-        ESP_LOGE(TAG, "Failed to stop BLE advertising; rc=%d", rc);
-    }
-}
+
 
 // Update BLE connection parameters for power saving using NimBLE.
-// Note: Use ble_gap_update_params() with a pointer to a 'struct ble_gap_upd_params'.
-void ble_connection_sleep(void)
-{
-    if (current_conn_handle == BLE_HS_CONN_HANDLE_NONE) {
-        ESP_LOGW(TAG, "No BLE connection available for updating connection params");
-        return;
-    }
-    int rc = ble_gap_update_params(current_conn_handle, &upd_params);
-    if (rc == 0) {
-        ESP_LOGI(TAG, "Requested BLE connection param update for power saving");
-    } else {
-        ESP_LOGE(TAG, "Failed to update BLE connection params; rc=%d", rc);
-    }
-}
+
 
 // Put BLE into idle mode (stop advertising) using NimBLE.
 void ble_idle_mode(void)
