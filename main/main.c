@@ -18,11 +18,11 @@
 #include "calibration.h"
 #include "ble_secure_server.h"
 
-#include "esp_bt.h"
 #include "esp_bt_main.h"
 #include "esp_bt_device.h"
 #include "esp_gap_ble_api.h"
 #include "esp_gatts_api.h"
+
 // Configuration
 #define WIFI_SSID           "Tori_2.44Ghz"
 #define WIFI_PASS           "Logarithmses900"
@@ -47,10 +47,6 @@ calibration_t g_calib;
 httpd_handle_t https_server = NULL;
 extern QueueHandle_t g_weight_queue;
 
-// Bluetooth task
-
-
-
 void initialize_nvs(void) {
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -58,8 +54,8 @@ void initialize_nvs(void) {
         ret = nvs_flash_init();
     }
     ESP_ERROR_CHECK(ret);
-    
-    // Initialize BT controller
+
+    // Release memory for Classic BT
     ESP_ERROR_CHECK(esp_bt_controller_mem_release(ESP_BT_MODE_CLASSIC_BT));
 }
 
@@ -69,13 +65,24 @@ bool https_server_is_running(void) {
 
 void app_main(void) {
     LOG_ROW(TAG, "=== Smart-Scale FW starting ===");
-    
-    // 1. Initialize NVS and Bluetooth memory
+
+    // 1. Initialize NVS and release Classic BT memory
     initialize_nvs();
 
-    // 2. Initialize Bluetooth (before Wi-Fi)
-    LOG_ROW(TAG, "Initializing Bluetooth...");
- 
+    // 2. Initialize BLE stack
+    LOG_ROW(TAG, "Initializing Bluetooth LE stack...");
+
+    esp_bt_controller_config_t bt_cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();
+    ESP_ERROR_CHECK(esp_bt_controller_init(&bt_cfg));
+    ESP_ERROR_CHECK(esp_bt_controller_enable(ESP_BT_MODE_BLE));
+
+    ESP_ERROR_CHECK(esp_bluedroid_init());
+    ESP_ERROR_CHECK(esp_bluedroid_enable());
+
+    // Register BLE GATT and GAP callbacks
+    ESP_ERROR_CHECK(esp_ble_gatts_register_callback(ble_secure_server_gatts_cb));
+    ESP_ERROR_CHECK(esp_ble_gap_register_callback(ble_secure_server_gap_cb));
+    ESP_ERROR_CHECK(esp_ble_gatts_app_register(0));  // Application ID 0
 
     // 3. Calibration
     {
@@ -104,8 +111,6 @@ void app_main(void) {
         LOG_ROW(TAG, "Calibration: slope=%.6f intercept=%.2f",
                 g_calib.slope, g_calib.intercept);
     }
-      
-  ble_secure_server_init();
 
     // 4. Initialize Wi-Fi
     wifi_comm_start(WIFI_SSID, WIFI_PASS);
@@ -117,7 +122,7 @@ void app_main(void) {
     // 6. Weight manager
     weight_manager_init(hx711_get_queue(), &g_calib);
 
-    // 7. HTTPS server
+    // 7. Start HTTPS server if Wi-Fi is up
     int retries = 0;
     while (!wifi_is_connected() && retries++ < 20) {
         vTaskDelay(pdMS_TO_TICKS(500));
@@ -130,9 +135,5 @@ void app_main(void) {
         LOG_ROW(TAG, "Wi-Fi not connected, skipping HTTPS server start");
     }
 
-    // Main monitoring loop
+    // Main loop can remain empty or monitor as needed
 }
-
-
-
-
