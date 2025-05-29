@@ -5,6 +5,7 @@
 #include "esp_gatt_common_api.h"
 #include "esp_gap_ble_api.h"
 #include "string.h"
+#include "esp_gatts_api.h"
 
 #define TAG "BLE_SECURE_SERVER"
 
@@ -19,7 +20,16 @@ static const uint16_t BATTERY_SERVICE_UUID      = 0x180F;
 static const uint16_t BATTERY_LEVEL_UUID        = 0x2A19;
 static const uint16_t COMMAND_SERVICE_UUID      = 0xFFF0;
 static const uint16_t COMMAND_CHAR_UUID         = 0xFFF1;
+//static const uint16_t COMMAND_IDX_CFG          = 0xFFF2;
+static const uint16_t client_characteristic_configuration_uuid = ESP_GATT_UUID_CHAR_CLIENT_CONFIG;
 
+
+
+static uint8_t battery_level = 100;
+static esp_gatt_if_t battery_gatts_if = 0;
+static uint16_t battery_conn_id = 0;
+static uint16_t battery_val_handle = 0; 
+static uint8_t battery_ccc[2] = {0x00, 0x00};
 /// Attribute table index
 // Secure Service
 enum {
@@ -39,14 +49,16 @@ enum {
     BATTERY_IDX_SERVICE,
     BATTERY_IDX_CHAR,
     BATTERY_IDX_VAL,
-    BATTERY_IDX_NB,
+    BATTERY_IDX_CFG,   // CCCD for notifications
+    BATTERY_IDX_NB     // Must be the last
 };
-
 // Command Service
 enum {
     COMMAND_IDX_SERVICE,
     COMMAND_IDX_CHAR,
     COMMAND_IDX_VAL,
+    
+    COMMAND_IDX_CFG,  // Client Characteristic Configuration Descriptor (CCCD)
     COMMAND_IDX_NB,
 };
 #define SECURE_SVC_INST_ID   0
@@ -59,7 +71,6 @@ static uint16_t secure_handle_table[SECURE_IDX_NB];
 static uint8_t char_a_value[4] = {0x01, 0x02, 0x03, 0x04};
 static uint8_t char_b_value[2] = {0x05, 0x06};
 static uint8_t char_c_value[1] = {0x07};
-static uint8_t battery_level = 95;
 static uint8_t command_value[20] = {0};
 
 
@@ -70,6 +81,7 @@ uint16_t command_handle_table[COMMAND_IDX_NB];
 static const uint16_t primary_service_uuid = ESP_GATT_UUID_PRI_SERVICE;
 static const uint16_t char_decl_uuid = ESP_GATT_UUID_CHAR_DECLARE;
 static const uint16_t char_client_cfg_uuid = ESP_GATT_UUID_CHAR_CLIENT_CONFIG;
+static uint16_t ccc_default = 0x0000;
 
 static const uint8_t prop_read_notify = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_NOTIFY;
 static const uint8_t prop_read = ESP_GATT_CHAR_PROP_BIT_READ;
@@ -123,6 +135,11 @@ static esp_gatts_attr_db_t battery_svc_db[BATTERY_IDX_NB] = {
     [BATTERY_IDX_VAL] =
     {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&BATTERY_LEVEL_UUID, ESP_GATT_PERM_READ,
       sizeof(uint8_t), sizeof(uint8_t), &battery_level}},
+
+  [BATTERY_IDX_CFG] = 
+    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&client_characteristic_configuration_uuid,
+      ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+      sizeof(uint16_t), sizeof(uint16_t), (uint8_t *)battery_ccc}},
 };
 
 static esp_gatts_attr_db_t command_svc_db[COMMAND_IDX_NB] = {
@@ -137,6 +154,8 @@ static esp_gatts_attr_db_t command_svc_db[COMMAND_IDX_NB] = {
     [COMMAND_IDX_VAL] =
     {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&COMMAND_CHAR_UUID, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       sizeof(command_value), sizeof(command_value), command_value}},
+
+ 
 };
 
 
@@ -202,6 +221,7 @@ esp_ble_gatts_create_attr_tab(command_svc_db, gatts_if, COMMAND_IDX_NB, COMMAND_
         esp_ble_gatts_start_service(command_handle_table[COMMAND_IDX_SERVICE]);
     }
     break;
+
     case ESP_GATTS_READ_EVT:
         ESP_LOGI(TAG, "Read event");
         if (param->read.handle == secure_handle_table[SECURE_IDX_CHAR_VAL_A]) {
@@ -211,13 +231,42 @@ esp_ble_gatts_create_attr_tab(command_svc_db, gatts_if, COMMAND_IDX_NB, COMMAND_
     uint32_t trans_id,
     esp_gatt_status_t status,
     esp_gatt_rsp_t *rsp );
+    break;
+   }
+    case ESP_GATTS_CONNECT_EVT:
+        ESP_LOGI(TAG, "Device connected");
+        battery_gatts_if = gatts_if;
+        battery_conn_id = param->connect.conn_id;
+        esp_ble_gatts_send_indicate(gatts_if, battery_conn_id, battery_handle_table[BATTERY_IDX_VAL], sizeof(battery_level), &battery_level, false);
+        break;
+    
+    case ESP_GATTS_WRITE_EVT:
+        ESP_LOGI(TAG, "Write event");
+        if (param->write.handle == command_handle_table[COMMAND_IDX_VAL]) {
+            // Handle command write
+            ESP_LOGI(TAG, "Command received: %.*s", param->write.len, param->write.value);
+            // Process the command as needed
+            // For example, you can store it or trigger an action based on the command
+            memcpy(command_value, param->write.value, param->write.len);
+        } else if (param->write.handle == battery_handle_table[BATTERY_IDX_CFG]) {
+            // Handle CCCD write for battery notifications
+            ccc_default = *(uint16_t *)param->write.value;
+            ESP_LOGI(TAG, "Battery CCCD updated: 0x%04X", ccc_default);
+        }
+        break;
+    case ESP_GATTS_DISCONNECT_EVT:
+        ESP_LOGI(TAG, "Device disconnected");
+        battery_gatts_if = 0;
+        battery_conn_id = 0;
+        ccc_default = 0x0000; // Reset CCCD
+        break;
 
-
+      
     default:
         break;
     }
 }
-                                }
+                                
 
 void ble_secure_server_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param) {
     // Handle GAP events
@@ -234,3 +283,23 @@ void ble_secure_server_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param
             break;
     }
   }
+
+
+  void simulate_battery_notify()
+{
+    battery_level = (battery_level > 5) ? battery_level - 1 : 100;
+
+    esp_ble_gatts_set_attr_value(battery_val_handle, sizeof(battery_level), &battery_level);
+
+    // Only notify if notifications are enabled
+    if (ccc_default == 0x0001) {
+        esp_ble_gatts_send_indicate(
+            battery_gatts_if,
+            battery_conn_id,
+            battery_val_handle,
+            sizeof(battery_level),
+            &battery_level,
+            false  // false = notification, true = indication
+        );
+    }
+}
