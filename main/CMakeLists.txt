@@ -42,11 +42,6 @@ idf_component_register(
         "wifi_https_server"
    
     
-        
-        
-        
-
-        
     REQUIRES
         driver     # for gpio_*
         esp_rom    # for ets_delay_us()
@@ -60,6 +55,7 @@ idf_component_register(
         mbedtls
         esp_http_server
         esp_https_server
+        esp_https_ota
 
             
 )

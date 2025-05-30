@@ -1,9 +1,17 @@
 // File: main/wifi_https_server/wifi_https_server.c
-
+#include "esp_wifi.h"
+#include "esp_event.h"
+#include "esp_netif.h"
+#include "nvs_flash.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 #include <string.h>
 #include <stdio.h>
+#include "wifi_comm.h"
 #include "esp_log.h"
 #include "esp_err.h"
+#include "esp_https_ota.h"
+#include "esp_http_client.h"
 #include "esp_tls.h"
 #include "esp_https_server.h"
 #include "mbedtls/error.h"
@@ -81,4 +89,117 @@ cfg.httpd.send_wait_timeout     = 10;
 
     httpd_register_uri_handler(https_server, &weight_uri);
     ESP_LOGI(TAG, "HTTPS Server started on port %d", cfg.port_secure);
+
+    // Register weight endpoint
+    ESP_LOGI(TAG, "Registering /weight endpoint");
+    httpd_register_uri_handler(https_server, &ota_uri);
+    ESP_LOGI(TAG, "HTTPS Server OTA endpoint registered");
+
+    // Register weight endpoint
+    httpd_register_uri_handler(https_server, &weight_uri);
+    ESP_LOGI(TAG, "Registered /weight endpoint");
+    // Register OTA endpoint
+    httpd_register_uri_handler(https_server, &ota_uri);
+    ESP_LOGI(TAG, "Registered /weight and /ota endpoints");
+
+}
+
+
+ esp_err_t ota_post_handler(httpd_req_t *req)
+{
+    httpd_resp_sendstr(req, "OTA update triggered\n");
+    trigger_ota_mode();  // Will block or reboot
+    return ESP_OK;
+}
+
+const httpd_uri_t ota_uri = {
+    .uri      = "/ota",
+    .method   = HTTP_POST,
+    .handler  = ota_post_handler,
+    .user_ctx = NULL
+};
+
+
+void trigger_ota_mode(void)
+{
+    ESP_LOGI(TAG, "Switching to OTA mode...");
+
+    // Optional: stop BLE if enabled
+    // esp_ble_gatts_app_unregister(your_ble_app_id);
+
+    start_wifi_for_ota();
+
+    esp_err_t ret = start_https_ota_update();
+    if (ret == ESP_OK) {
+        ESP_LOGI(TAG, "OTA update successful. Rebooting...");
+        esp_restart();
+    } else {
+        ESP_LOGE(TAG, "OTA update failed: %s", esp_err_to_name(ret));
+    }
+}
+
+esp_err_t start_https_ota_update(void)
+{
+    esp_http_client_config_t http_config = {
+        .url = "https://your-server.com/firmware.bin",
+        .cert_pem = NULL,  // For testing only
+        .timeout_ms = 10000,
+    };
+
+    esp_https_ota_config_t ota_config = {
+        .http_config = &http_config,
+    };
+
+    esp_err_t ret = esp_https_ota(&ota_config);
+    if (ret == ESP_OK) {
+        ESP_LOGI("OTA", "OTA successful, restarting...");
+        esp_restart();  // You may want to return ESP_OK before restarting
+    } else {
+        ESP_LOGE("OTA", "OTA failed: %s", esp_err_to_name(ret));
+    }
+    return ret;
+}
+
+
+void start_wifi_for_ota(void)
+{
+    wifi_init_sta("your_ssid", "your_password");
+
+    while (!wifi_is_connected()) {
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
+
+    ESP_LOGI(TAG, "Wi-Fi connected, ready for OTA");
+}
+
+void wifi_init_sta(const char *ssid, const char *password)
+{
+    esp_netif_init();
+    esp_event_loop_create_default();
+    esp_netif_create_default_wifi_sta();
+
+    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+    esp_wifi_init(&cfg);
+    esp_wifi_set_mode(WIFI_MODE_STA);
+
+    wifi_config_t wifi_config = {
+        .sta = {
+            .threshold.authmode = WIFI_AUTH_WPA2_PSK,
+        },
+    };
+    strncpy((char *)wifi_config.sta.ssid, ssid, sizeof(wifi_config.sta.ssid));
+    strncpy((char *)wifi_config.sta.password, password, sizeof(wifi_config.sta.password));
+
+    esp_wifi_set_config(WIFI_IF_STA, &wifi_config);
+    esp_wifi_start();
+    esp_wifi_connect();
+}
+
+void wifi_https_server_stop(void)
+{
+    if (https_server) {
+        httpd_ssl_stop(https_server);
+        https_server = NULL;
+        ESP_LOGI(TAG, "HTTPS Server stopped");
+    }
 }
