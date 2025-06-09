@@ -15,11 +15,14 @@
 #include "esp_tls.h"
 #include "esp_https_server.h"
 #include "mbedtls/error.h"
+#include "esp_sntp.h"
+#include "esp_sntp.h"
+#include "esp_http_server.h"
 #include "wifi_https_server.h"
 #include "hx711.h"            // for hx711_get_latest_reading()
 
 static const char *TAG = "wif_https_srv";
-
+httpd_handle_t https_server = NULL;
 // Embedded PEM blobs (via EMBED_TXTFILES in CMakeLists.txt)
 extern const uint8_t fullchain_pem_start[] asm("_binary_fullchain_pem_start");
 extern const uint8_t fullchain_pem_end[]   asm("_binary_fullchain_pem_end");
@@ -50,11 +53,11 @@ static const httpd_uri_t weight_uri = {
 /** Global handle, visible to main.c */
 
 
-void init_https_server(void)
+esp_err_t init_https_server(void)
 {
     if (https_server) {
         // already running
-        return;
+        return ESP_OK;
     }
 
     struct httpd_ssl_config cfg = HTTPD_SSL_CONFIG_DEFAULT();
@@ -63,12 +66,12 @@ void init_https_server(void)
     cfg.port_secure    = 8095;
     cfg.port_insecure  = 0;
     cfg.httpd.max_uri_handlers       = 8;    // Reduce if fewer endpoints
-cfg.httpd.max_open_sockets       = 3;    // Reduce concurrent connections
-cfg.httpd.backlog_conn           = 2;    // Reduce connection backlog
-cfg.httpd.stack_size             = 8192; // Increase if needed
-cfg.httpd.lru_purge_enable       = true; // Enable LRU purging
-cfg.httpd.recv_wait_timeout      = 10;   // Shorter timeout
-cfg.httpd.send_wait_timeout     = 10; 
+    cfg.httpd.max_open_sockets       = 3;    // Reduce concurrent connections
+    cfg.httpd.backlog_conn           = 2;    // Reduce connection backlog
+    cfg.httpd.stack_size             = 8192; // Increase if needed
+    cfg.httpd.lru_purge_enable       = true; // Enable LRU purging
+    cfg.httpd.recv_wait_timeout      = 10;   // Shorter timeout
+    cfg.httpd.send_wait_timeout      = 10; 
 
     cfg.cacert_pem     = fullchain_pem_start;
     cfg.cacert_len     = fullchain_pem_end - fullchain_pem_start;
@@ -79,31 +82,36 @@ cfg.httpd.send_wait_timeout     = 10;
 
     esp_err_t err = httpd_ssl_start(&https_server, &cfg);
     if (err != ESP_OK) {
-         char err_buf[128];  
-          mbedtls_strerror(-err, err_buf, sizeof(err_buf));
-        ESP_LOGE(TAG, "SSL start failed: 0x%x (%s)", (unsigned int) (-err), err_buf);
+        char err_buf[128];  
+        mbedtls_strerror(-err, err_buf, sizeof(err_buf));
+        ESP_LOGE(TAG, "SSL start failed: 0x%x (%s)", (unsigned int)(-err), err_buf);
         ESP_LOGE(TAG, "httpd_ssl_start failed: %s", esp_err_to_name(err));
         https_server = NULL;
-        return;
+        return err;
     }
 
-    httpd_register_uri_handler(https_server, &weight_uri);
+    // Register URI handlers
+    err = httpd_register_uri_handler(https_server, &weight_uri);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to register /weight endpoint: %s", esp_err_to_name(err));
+        httpd_ssl_stop(https_server);
+        https_server = NULL;
+        return err;
+    }
+
+    err = httpd_register_uri_handler(https_server, &ota_uri);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to register /ota endpoint: %s", esp_err_to_name(err));
+        httpd_ssl_stop(https_server);
+        https_server = NULL;
+        return err;
+    }
+
     ESP_LOGI(TAG, "HTTPS Server started on port %d", cfg.port_secure);
-
-    // Register weight endpoint
-    ESP_LOGI(TAG, "Registering /weight endpoint");
-    httpd_register_uri_handler(https_server, &ota_uri);
-    ESP_LOGI(TAG, "HTTPS Server OTA endpoint registered");
-
-    // Register weight endpoint
-    httpd_register_uri_handler(https_server, &weight_uri);
-    ESP_LOGI(TAG, "Registered /weight endpoint");
-    // Register OTA endpoint
-    httpd_register_uri_handler(https_server, &ota_uri);
     ESP_LOGI(TAG, "Registered /weight and /ota endpoints");
-
+    
+    return ESP_OK;
 }
-
 
  esp_err_t ota_post_handler(httpd_req_t *req)
 {

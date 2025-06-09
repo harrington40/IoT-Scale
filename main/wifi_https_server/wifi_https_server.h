@@ -36,7 +36,7 @@ void wifi_https_server_stop(void);
 
 // Extern declaration of HTTPS server handle (if declared globally in .c)
 extern struct httpd_ssl_config_t https_server_config;
-void init_https_server(void);
+esp_err_t init_https_server(void);
 
 /** Global server handle, NULL if not running */
 extern httpd_handle_t https_server;
